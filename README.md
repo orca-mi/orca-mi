@@ -1,0 +1,157 @@
+# 🐋 ORCA-MI
+
+**Open Radiology & Computational Analysis — Molecular Imaging** · version 0.1.0
+
+### 🐋 *Agile intelligence, deep insight*
+
+*Built for nuclear medicine and molecular imaging, with full CT and MR support · PET/SPECT quantification · dosimetry · segmentation · registration · AI*
+
+**Why ORCA?** Like the orca, ORCA-MI is **fast** (native code, GPU 3D, swift processing), **intelligent** (deep
+learning segmentation and image-to-image AI) and gives **deep insight** beneath the surface of your images
+(quantification, kinetics, dosimetry).
+
+A fast medical image workstation in one Windows program. Open DICOM, NIfTI and other formats, segment by hand or
+with AI, measure SUV / MTV / TLG, analyse dynamic and multi-time-point scans, plan doses, and send the results back
+to the PACS as DICOM.
+
+> **For research use only.** ORCA-MI is not a certified medical device (no CE marking, no FDA clearance) and must
+> not be used for clinical decisions. ORCA-MI is an independent research project, not affiliated with, or endorsed
+> by, any company or product named ORCA.
+
+## ⬇ Download
+
+| | **Installer** | **Portable** |
+|---|---|---|
+| File | [ORCA-MI-0.1.0-setup.exe](download/ORCA-MI-0.1.0-setup.exe) | [ORCA-MI-0.1.0-portable.zip](download/ORCA-MI-0.1.0-portable.zip) |
+| Administrator rights | not needed (installs for the current user) | not needed |
+| Where it runs | `%LOCALAPPDATA%\Programs\ORCA-MI` | anywhere: Desktop, USB stick, shared folder |
+| Start menu / desktop shortcut | ✔ (desktop optional) | – |
+| "Open with ORCA-MI" for .nii .nrrd .mha .mhd .dcm | optional | – |
+| Uninstall | Windows *Apps* list | delete the folder |
+
+Both contain the same program. Settings, models and AI environments are kept in your user profile, so switching
+between the two, or updating, keeps everything.
+
+**Requirements:** Windows 10 or 11, 64-bit. A GPU is used for the 3D view; the AI features run on an NVIDIA GPU
+when one is available, otherwise on the CPU.
+
+**Windows SmartScreen:** ORCA-MI is not yet code-signed, so Windows may show *"Windows protected your PC"* the first
+time. Click **More info → Run anyway**.
+
+## What it does
+
+| | |
+|---|---|
+| **View** | DICOM (CT, MR, PET, SPECT, X-ray, US, enhanced multi-frame, compressed), RTSTRUCT, RTDOSE, DICOM SEG, NIfTI, NRRD, MHA/MHD, Analyze, NumPy, PNG/JPEG/TIFF · drag-and-drop layouts up to 5×5, MPR and two MPRs side by side · PET/CT and SPECT/CT fusion · 60+ colour maps (incl. 3D Slicer's PET tables) · GPU 3D (MIP, DVR, surfaces) · 4D cine · a searchable patient database for PACS-like folders |
+| **Hanging protocols** | PET/CT, SPECT/CT, PET/MR, CT and PET screens arranged automatically after loading; save your own |
+| **Segment** | segmentations shown and edited on every image (as in 3D Slicer) · brush, eraser, polygon, region growing, threshold, morphology, interpolation, undo · **nnInteractive** (click / box / scribble / lasso) · **nnU-Net** · iterative PET lesion segmentation (XEOS) · one-click **body contour** |
+| **Measure** | SUVbw / SUL / SUVbsa · volume (MTV), SUVmean, SUVmax, **SUVpeak**, **TLG** per segment or lesion · Dice, HD95 and other overlap metrics |
+| **Dynamic / multi-time-point** | motion correction · time-activity curves per segment · **Patlak Ki** and Ki maps · effective half-life and time-integrated activity for therapy SPECT |
+| **Q.SPECT** | quantitative SPECT: counts → Bq/mL with your conversion factors per scanner, isotope and reconstruction, scaled to the acquisition time (per projection or total, e.g. StarGuide); your scanner library is kept across updates and exported as JSON |
+| **NEMA IEC phantom** | contrast recovery (mean / max / peak), NEMA QH, background variability, SPECT calibration from a uniform phantom, PDF and Excel reports; ROIs exchanged with ORCA-MI segmentations, calibration saved to Q.SPECT |
+| **Batch DICOM → NIfTI** | whole folder trees, Excel tables of the DICOM headers, PET in SUV, gantry-tilt and slice-spacing correction, file renaming, optional dcm2niix |
+| **Decay & values** | decay correction of images and an activity calculator (Bq … Ci, common PET / SPECT / therapy nuclides) · data type conversion, clipping, normalisation, exact percentiles |
+| **CT dose** | per-slice tube current, mAs, CTDIvol, water-equivalent diameter, SSDE, density / μ-maps |
+| **Compare** | bias maps, ME / MAE / RMSE / SSIM / PSNR per region, gamma index, noise power spectrum |
+| **Lesion tracking** | lesions of two time points linked one by one, per-lesion diameter / volume / SUVmax / SUVpeak / TLG, RECIST 1.1, PERCIST 1.0, TMTV |
+| **Cardiac** | short-axis reorientation, 17-segment LV model, bull's-eye |
+| **Dosimetry** | SIRT Y-90 local deposition, DVH and DVH constraints, isodose lines, dose colour wash |
+| **Register** | manual, centre of mass, rigid / affine (MI, NCC, MSE) with masks or a focus sphere, deformable Demons |
+| **Export** | **DICOM for the PACS: image series, SEG, RTSTRUCT and measurement SR** with anonymisation · NIfTI · figures, 3D rotation and cine GIFs · CSV / Excel report folders |
+| **Safety net** | autosave every 2 minutes and crash recovery · workspaces |
+| **AI** | one-click private Python + PyTorch installer, model library, train your own nnU-Net, fine-tune nnInteractive |
+| **Reader studies** | blinded, randomised scoring sessions for physicians, results charts |
+| **Automate** | every function from scripts and from Python (`import orcami`): load files, numpy arrays and SimpleITK images, measure, export |
+| **Record** | training videos of your session (MP4, microphone and camera picture-in-picture, pointer, keys, watermark) · GIF / picture viewer |
+| **Language** | English and French interface |
+
+## Quick start
+
+1. **Open images:** drag files or a DICOM folder onto the window, or use 📂 / 🏥 (patient database) in the
+   toolbar. A PET/CT is arranged automatically by its hanging protocol.
+2. **Look:** scroll = slices, right-drag = window/level, Ctrl+wheel = zoom, middle-drag = pan, double-click =
+   maximise a view, 1–9 = window presets.
+3. **Segment:** Segment tab → brush / threshold / nnInteractive, or AI tab → a model. *Statistics in segments*
+   gives MTV, SUVmean, SUVmax, SUVpeak and TLG.
+4. **Export:** File → *Export to DICOM / PACS* (SEG, RTSTRUCT, SR into the original study) or *Export images &
+   GIFs*.
+5. Your work is autosaved; after a crash ORCA-MI offers to restore it.
+
+## Python in three lines
+
+```python
+import orcami as om                      # orcami.py is next to ORCA-MI.exe
+v = om.Viewer()                          # starts or connects to the viewer
+v.load("pet.nii.gz"); v.threshold(2.5, 1000); print(v.stats())
+```
+
+More in the [user guide → Automation](docs/USER_GUIDE.md#9-automation-scripts-and-python) and the
+[examples](#-examples).
+
+## 📂 Examples
+
+Ready-to-run Python scripts (also installed in the `examples` folder next to `ORCA-MI.exe`). Examples 00, 05, 06
+and 07 have a `DEMO = True` switch that makes small synthetic images, so they run without your data (set it to
+`False` and fill in your own paths); in 01 – 04, write your own paths at the top.
+
+| Script | What it shows |
+|---|---|
+| [00_load_images.py](examples/00_load_images.py) | the simplest loading: files, DICOM folders, numpy arrays, SimpleITK images; a PET fused on every view; case after case |
+| [01_quick_start.py](examples/01_quick_start.py) | a PET/CT with a segmentation: SUVmean / SUVmax / SUVpeak / TLG per lesion, figures and GIFs |
+| [02_batch_tlg_table.py](examples/02_batch_tlg_table.py) | one table of lesion measurements for many patients |
+| [03_batch_crop_and_figures.py](examples/03_batch_crop_and_figures.py) | crop around the segments and export figures for many cases |
+| [04_dynamic_and_time_points.py](examples/04_dynamic_and_time_points.py) | dynamic PET time-activity curves and multi-time-point SPECT |
+| [05_segment_and_score_database.py](examples/05_segment_and_score_database.py) | **build a segmentation database and a scoring (reader study) database** and open them |
+| [06_review_cases_one_by_one.py](examples/06_review_cases_one_by_one.py) | review a list of cases one by one with fusion, segmentation, colormaps and snapshots |
+| [07_prepare_copy_segment_score_database.py](examples/07_prepare_copy_segment_score_database.py) | **prepare a self-contained copy of a segmentation / scoring database** to give to physicians, with their shortcuts |
+
+The scripts need only Python 3 (numpy for the demos). `orcami.py` comes with ORCA-MI (installer and portable zip):
+keep the scripts in the `examples` folder of ORCA-MI, or put `orcami.py` next to them.
+
+## AI models
+
+The AI features need a Python environment with PyTorch: **Tools → Install AI environment** sets up a private one
+(no administrator rights, your own Python installations are not touched). Trained models are installed from
+**Tools → Model library**. Most models have five folds of about 250 MB each: download only the folds you want, and
+tick the folds to run in the AI tab. The GPU memory is released after every run.
+
+Models you train or fine-tune yourself stay on your computer: they, their training data and their evaluation are
+never uploaded or shared.
+
+## 📖 Documentation
+
+* **[User guide](docs/USER_GUIDE.md)** — also inside the program: **Help → 📖 User guide**.
+* [Changelog](CHANGELOG.md)
+* [Third-party licences](docs/third_party_licenses.html) — the open-source libraries built into ORCA-MI.
+
+## Privacy
+
+ORCA-MI never uploads your images or results. Anonymous usage statistics, your country (a separate question, sent
+once from Windows' region setting) and notifications about new models are **off unless you agree** when ORCA-MI
+asks, and never contain images, file names or patient data. Details:
+[Feedback and privacy](docs/USER_GUIDE.md#10-feedback-and-privacy).
+
+## Feedback
+
+In the program: **Help → 🐞 Report a bug / 💡 Request a feature / 💬 Comment**, or open an issue in this
+repository, or write to salimiyazdan@gmail.com.
+
+## Licence and citation
+
+ORCA-MI is free for non-commercial research and education; see [LICENSE](LICENSE) (not an open-source licence:
+no commercial use, no clinical use, no modified copies, no reverse engineering). The open-source libraries it
+contains keep their own licences.
+
+**Licence file:** ORCA-MI runs as a 7-day trial on each computer; for longer use, request your **free personal
+licence** in the program (**Help → 🔑 Licence… → Request your free licence**) and load the `.lic` file you receive by
+e-mail. Details: [Licence and trial](docs/USER_GUIDE.md#-licence-and-trial).
+
+If you use ORCA-MI in a publication, please cite it ([CITATION.cff](CITATION.cff); GitHub's *Cite this repository*
+button gives APA and BibTeX):
+
+> Salimi, Y. (2026). *ORCA-MI: Open Radiology & Computational Analysis – Molecular Imaging* (Version 0.1.0)
+> [Computer software]. https://github.com/orca-mi/orca-mi
+
+---
+
+Author: **Yazdan Salimi** · Built with the help of Jean-Claude (Claude by Anthropic).
