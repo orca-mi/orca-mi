@@ -11,6 +11,7 @@ First public version.
   `image3d`, `measurements`; colormap names in scripts ignore case, spaces and dashes; example `00_load_images.py`.
 * Brush up to 128 mm (B or Alt + wheel); ruler ends can be dragged; Z selects the zoom tool.
 * Licence: a free personal licence file per computer, 7-day trial without one.
+* Video tutorials on YouTube: [youtube.com/@ORCA-MI](https://www.youtube.com/@ORCA-MI) (Help → ▶ Video tutorials, About, welcome page).
 
 * Viewer for DICOM (CT, MR, PET, SPECT, X-ray, US, RTSTRUCT, RTDOSE, SEG), NIfTI, NRRD, MHA/MHD and more;
   layouts up to 3×3, MPR, PET/CT and SPECT/CT fusion, GPU 3D, 4D cine, hanging protocols, patient database.

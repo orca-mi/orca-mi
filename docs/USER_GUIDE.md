@@ -9,6 +9,8 @@ the surface of your images.
 
 🌐 **Website, new versions and documentation: [github.com/orca-mi/orca-mi](https://github.com/orca-mi/orca-mi)** (also Help → 🌐 ORCA-MI on GitHub).
 
+▶ **Video tutorials: [youtube.com/@ORCA-MI](https://www.youtube.com/@ORCA-MI)** — short videos, one feature each (also Help → ▶ Video tutorials).
+
 In the program: **Help → 📖 User guide** opens this guide; **Help → 🐞 Report a bug / 💡 Request a feature** sends a message to the author.
 
 ## Contents

@@ -35,6 +35,8 @@ between the two, or updating, keeps everything.
 **Requirements:** Windows 10 or 11, 64-bit. A GPU is used for the 3D view; the AI features run on an NVIDIA GPU
 when one is available, otherwise on the CPU.
 
+▶ **Video tutorials:** [youtube.com/@ORCA-MI](https://www.youtube.com/@ORCA-MI) — short videos, one feature each.
+
 **Windows SmartScreen:** ORCA-MI is not yet code-signed, so Windows may show *"Windows protected your PC"* the first
 time. Click **More info → Run anyway**.
 
@@ -121,6 +123,7 @@ never uploaded or shared.
 ## 📖 Documentation
 
 * **[User guide](docs/USER_GUIDE.md)** — also inside the program: **Help → 📖 User guide**.
+* **[Video tutorials on YouTube](https://www.youtube.com/@ORCA-MI)** — also in the program: **Help → ▶ Video tutorials**.
 * [Changelog](CHANGELOG.md)
 * [Third-party licences](docs/third_party_licenses.html) — the open-source libraries built into ORCA-MI.
 
