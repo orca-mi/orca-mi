@@ -100,7 +100,8 @@ In the program: **Help → 📖 User guide** opens this guide; **Help → 🐞 R
     * [🏥 Export to DICOM / PACS (images, SEG, RTSTRUCT, SR)](#-export-to-dicom--pacs-images-seg-rtstruct-sr)
     * [📸 Export images & GIFs](#-export-images--gifs)
     * [🎞 Picture viewer (GIF, PNG, JPEG)](#-picture-viewer-gif-png-jpeg)
-    * [🗂 Batch DICOM → NIfTI conversion](#-batch-dicom--nifti-conversion)
+    * [🗂 DICOM curation & conversion (batch DICOM → NIfTI)](#-dicom-curation--conversion-batch-dicom--nifti)
+    * [🗃 Curate a DICOM database](#-curate-a-dicom-database)
     * [⏺ Record a session (training video)](#-record-a-session-training-video)
     * [🕶 Anonymize DICOM](#-anonymize-dicom)
 * [8. Sessions, workspaces and reader studies](#8-sessions-workspaces-and-reader-studies)
@@ -220,7 +221,7 @@ The drop-down menus are sorted into categories:
 * **Tools**, with the same titled sections: *Analysis* (dynamic PET, NEMA IEC, brain PET resolution), *AI and
   nnU-Net* (nnInteractive, AI models, training, prepare nnU-Net training, model library, AI environment),
   *Reading studies and databases* (image quality scoring, score / segment a database, reading sessions, results) and
-  *Data, privacy and recording* (batch DICOM → NIfTI, anonymize DICOM, record a session); then Log and Settings.
+  *Data, privacy and recording* (curate a DICOM database, batch DICOM → NIfTI, anonymize DICOM, record a session); then Log and Settings.
   Registration is the 🔗 tab of the tool panel.
 
 **🎨 Colormap on the right-click menu**: right-click any image (a 2D view, the 3D view or its thumbnail in the image
@@ -2336,10 +2337,10 @@ Settings:
 
 Python: `v.export_images(folder, items=[...], quality=95, gif_delay_ms=60, ...)`.
 
-### 🗂 Batch DICOM → NIfTI conversion
+### 🗂 DICOM curation & conversion (batch DICOM → NIfTI)
 
-*Tools → 🗂 Batch DICOM → NIfTI conversion…* opens the *Yazdan DICOM* converter (dicom2nifti), built into ORCA-MI,
-in its own window. It converts whole folder trees: every subfolder with DICOM files becomes NIfTI files, with the
+*Tools → 🗂 DICOM curation & conversion…* opens the *Yazdan DICOM* converter (dicom2nifti), built into ORCA-MI,
+in its own window (tabs Convert, **Curate**, Rename, Options, dcm2niix, About). It converts whole folder trees: every subfolder with DICOM files becomes NIfTI files, with the
 same names, files and log as the standalone dicom2nifti.exe (checked file by file on the test data: identical).
 
 * **Convert:** drop folders or *Add folder*; results next to the DICOM files or in an output folder (the folder
@@ -2379,6 +2380,46 @@ Script: `dicomconvwindow`, `dicomconvert D:\study;E:\other|out=D:\nifti|modaliti
 with other names add e.g. `|pattern=series:6,acquisition_date:0,sex:1|sep=_` (field:letters, 0 = all; fields
 `modality, study, study_date, study_time, series, acquisition_date, acquisition_time, age, sex, scanner, recon`;
 times are written without the fraction of seconds, e.g. `081502`).
+
+### 🗃 Curate a DICOM database
+
+*Tools → 🗃 Curate a DICOM database…* (the **Curate** tab of the window above) organizes and converts data exported
+from PACS (e.g. syngo.via): every file is read (header only, in parallel) and put into folders built from its DICOM
+header, e.g. `DOE-JOHN--ANON54121 \ 20181115--Tumor-Imaging \ 2--C2S1D0-AbdRoutine-3-0-I31s-3`.
+
+* **DICOM folders:** type or paste a folder address (Enter or *Add*), *Browse*, drop folders on the window, *Same as
+  Convert tab*, or *Patient database (n)* = every folder of ORCA-MI's patient database. Every sub-folder is read.
+* **Folder structure:**
+  * **Build from DICOM tags:** one row per folder level, top first. Each level holds one or more tags (*+ tag* menu,
+    or *Other tag*: any keyword such as `ProtocolName`, or a number such as `0018,1030`); several tags in one level are
+    joined by the **separator** (default `--`). ↑ / ↓ move a level, ✕ removes a tag or a level, *↺ Default* =
+    `PatientName--PatientID / StudyDate--StudyDescription / SeriesNumber--SeriesDescription`.
+    Values are cleaned like on the Rename tab (é → e, ^ and spaces → -, at most 64 letters); empty = `unknown`.
+    Two different values that give the same folder name (e.g. *Müller* and *Muller*) get `_2`, with a warning.
+  * **Keep the folders as they are:** the converter's own behaviour: no DICOM file is copied or moved, NIfTI + Excel
+    are written next to the DICOM files, in the same folders (as *Convert* with *Next to DICOM files*).
+* **Where:** *Another folder* (the output folder; several inputs are merged into one tree) or *In place* (the tree is
+  built inside each input folder).
+* **DICOM files:** **Copy** (originals untouched; only to another folder), **Move** (old empty folders are removed) or
+  **Leave where they are** (only NIfTI + Excel are written in the new folders).
+* **Write NIfTI (+ Excel):** each new folder also gets the converter's NIfTI, SUV and Excel files, with the Convert
+  tab's modalities and the Options tab (Excel, SUV, file names, workers): the files are identical to the Convert tab's.
+* **Rename DICOM files** `<Modality>_<InstanceNumber>.dcm` (otherwise the names are kept; a name already taken in a
+  folder gets `_2`).
+* **Duplicates** (same SOP Instance UID) are written once; with Move the extra copies stay where they were.
+* **Parallel:** headers are read on every core; *Copy / move workers* (Auto = 8, 4 on network paths `\\server\…`);
+  NIfTI uses the converter's workers.
+* **Preview** first: the folder tree with the number of files, and counts of patients, studies, series, files,
+  duplicates and name clashes. **Run** works only on a preview of the current options. *Stop* stops after the files in
+  progress.
+* **Files written:** `curate_log.csv` (action, old, new: one line per copied / moved file), `curate_index.csv` (folders
+  and their number of files), `curate_log.txt` (the log). **Undo last curation** moves the moved files back and deletes
+  the copied ones (NIfTI and Excel files are kept).
+* Not available in the trial (like the converter).
+
+Script: `dicomcurate D:\export|out=D:\curated|levels=PatientName,PatientID/StudyDate,StudyDescription/SeriesNumber,SeriesDescription|sep=--|dicom=copy|nifti=1`
+(`dicom=move|leave`, `inplace`, `keep`, `rename=1`, `workers=8`, `preview` = counts and tree only; `,` = same folder,
+`/` = next level), `dicomcurateundo D:\curated`, `curatewindow [<folder>][|out=<folder>][|preview]`.
 
 ### 🎞 Picture viewer (GIF, PNG, JPEG)
 
