@@ -551,6 +551,11 @@ the Python API. Script / Python: `hanging`, `hanging PET/CT`, `hanging auto=0`, 
   (a click erases there), **blue** elsewhere. Shift+drag still rotates, Ctrl+Z undoes. Script: `tool3d 0|1|2`, `erase3d <mm>`.
 * **Opacity on the image:** every 2D view with a fusion overlay or segmentation shows ◐ Fusion / ▦ Seg sliders in
   its header, so you don't need the Image tab.
+* **Segmentation opacity per view:** the ▦ Seg slider of a view changes the segmentations' opacity **in that view
+  only** (e.g. strong on the CT views, faint on the PET view); the other views keep theirs. **↺** next to it goes back
+  to the segmentation's own opacity (Segment tab). The same slider is in the view's right-click menu, under *Show
+  segmentation*. Saved with workspaces. Script: `viewsegopacity <0..1|own>[|vp=<i>]` (`segopacity` still sets the
+  segmentation's own opacity, for every view).
 
 ### 3D view: image and segments on / off
 
@@ -2793,7 +2798,7 @@ Available commands (also as `v.<command>(…)` in Python; `v.help()` lists them 
 
 | Group | Commands |
 |---|---|
-| Loading | `open loaddicom closeimage closeall listimages select nickname setrole segtoimage moveseg viewports showall fuseall image3d measurements` |
+| Loading | `open loaddicom closeimage closeall listimages select nickname setrole segtoimage moveseg viewports showall fuseall image3d viewsegopacity measurements` |
 | Database / PACS folders | `pacsadd pacsindex pacsopen pacsfilter pacsloadstudy` |
 | Display | `layout hanging activevp view tab theme contrast window colormap cursor slice tool fuse overlayopacity overlaycolormap nooverlay syncoverlay sync snapshot` |
 | 3D | `mode3d view3d show3d cpu3d gpu3d rotate3d removetable` |
