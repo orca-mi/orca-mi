@@ -2340,7 +2340,7 @@ Python: `v.export_images(folder, items=[...], quality=95, gif_delay_ms=60, ...)`
 ### 🗂 DICOM curation & conversion (batch DICOM → NIfTI)
 
 *Tools → 🗂 DICOM curation & conversion…* opens the *Yazdan DICOM* converter (dicom2nifti), built into ORCA-MI,
-in its own window (tabs Convert, **Curate**, Rename, Options, dcm2niix, About). It opens on the tab of Convert / Curate
+in its own window (tabs Convert, **Curate**, Rename, dcm2niix, About). It opens on the tab of Convert / Curate
 you used last. It converts whole folder trees: every subfolder with DICOM files becomes NIfTI files, with the
 same names, files and log as the standalone dicom2nifti.exe (checked file by file on the test data: identical).
 
@@ -2364,8 +2364,11 @@ same names, files and log as the standalone dicom2nifti.exe (checked file by fil
   window size follow; the choice is saved (`scale = auto` or e.g. `scale = 0.9` in the settings file).
 * **Rename:** clean file and folder names (é, ^, spaces, long names) before converting, with preview and undo.
 * **dcm2niix:** optionally also run dcm2niix (e.g. for 4D series, or JPEG-LS files the converter cannot decode).
-* **Options** are saved in `%APPDATA%\ORCA-MI\dicom2nifti_settings.ini` (same format as the standalone program).
-* **File names** (Options → *File names*): the name is built from DICOM fields in the order you choose, e.g. the
+* **⚙ NIfTI options** (a foldable section on the Convert tab and on the Curate tab, the same settings for both; there
+  is no Options tab any more): Excel summary / all slices / first slice, PET image in SUV, geometry (tilted gantry,
+  missing slices, NM whole-body), skip folders already converted, folders converted in parallel, file names. Saved when
+  a conversion or curation starts, in `%APPDATA%\ORCA-MI\dicom2nifti_settings.ini` (same format as the standalone program).
+* **File names** (⚙ NIfTI options → *File names*): the name is built from DICOM fields in the order you choose, e.g. the
   default *modality--study--series--0001--0000*. Fields: modality, study description, study date, study time,
   series description, acquisition date, acquisition time, patient age, patient sex, scanner model and reconstruction
   algorithm (*Reconstruction Method*, else the CT *Convolution Kernel*).
@@ -2404,15 +2407,17 @@ header, e.g. `DOE-JOHN--ANON54121 \ 20181115--Tumor-Imaging \ 2--C2S1D0-AbdRouti
 * **DICOM files:** **Copy** (originals untouched; only to another folder), **Move** (old empty folders are removed) or
   **Leave where they are** (only NIfTI + Excel are written in the new folders).
 * **Write NIfTI (+ Excel):** each new folder also gets the converter's NIfTI, SUV and Excel files, with the Convert
-  tab's modalities and the Options tab (Excel, SUV, file names, workers): the files are identical to the Convert tab's.
+  tab's modalities and the **⚙ NIfTI options** section of the Curate tab (Excel, SUV, geometry, file names, folders in
+  parallel; the same settings as on Convert): the files are identical to the Convert tab's.
 * **Rename DICOM files** `<Modality>_<InstanceNumber>.dcm` (otherwise the names are kept; a name already taken in a
   folder gets `_2`).
 * **Duplicates** (same SOP Instance UID) are written once; with Move the extra copies stay where they were.
-* **Parallel:** headers are read on every core; *Copy / move workers* (Auto = 8, 4 on network paths `\\server\…`);
+* **Parallel:** headers are read on every core; *Files copied / moved in parallel* (Auto = 8, 4 on network paths `\\server\…`);
   NIfTI uses the converter's workers.
-* **Preview** first: the folder tree with the number of files, and counts of patients, studies, series, files,
-  duplicates and name clashes. **Run** works only on a preview of the current options. *Stop* stops after the files in
-  progress.
+* **▶ Start curation** (the bar on top of the tab, always visible) makes the preview if it is missing or the options
+  changed, then copies / moves and writes NIfTI (Move asks first, with the number of files). **Preview only** shows the
+  folder tree with the number of files, and counts of patients, studies, series, files, duplicates and name clashes,
+  without writing anything. *Stop* stops after the files in progress.
 * **Files written:** `curate_log.csv` (action, old, new: one line per copied / moved file), `curate_index.csv` (folders
   and their number of files), `curate_log.txt` (the log). **Undo last curation** moves the moved files back and deletes
   the copied ones (NIfTI and Excel files are kept).
