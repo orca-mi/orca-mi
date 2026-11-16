@@ -221,7 +221,7 @@ The drop-down menus are sorted into categories:
 * **Tools**, with the same titled sections: *Analysis* (dynamic PET, NEMA IEC, brain PET resolution), *AI and
   nnU-Net* (nnInteractive, AI models, training, prepare nnU-Net training, model library, AI environment),
   *Reading studies and databases* (image quality scoring, score / segment a database, reading sessions, results) and
-  *Data, privacy and recording* (curate a DICOM database, batch DICOM → NIfTI, anonymize DICOM, record a session); then Log and Settings.
+  *Data, privacy and recording* (DICOM curation & conversion, anonymize DICOM, record a session); then Log and Settings.
   Registration is the 🔗 tab of the tool panel.
 
 **🎨 Colormap on the right-click menu**: right-click any image (a 2D view, the 3D view or its thumbnail in the image
@@ -2340,7 +2340,8 @@ Python: `v.export_images(folder, items=[...], quality=95, gif_delay_ms=60, ...)`
 ### 🗂 DICOM curation & conversion (batch DICOM → NIfTI)
 
 *Tools → 🗂 DICOM curation & conversion…* opens the *Yazdan DICOM* converter (dicom2nifti), built into ORCA-MI,
-in its own window (tabs Convert, **Curate**, Rename, Options, dcm2niix, About). It converts whole folder trees: every subfolder with DICOM files becomes NIfTI files, with the
+in its own window (tabs Convert, **Curate**, Rename, Options, dcm2niix, About). It opens on the tab of Convert / Curate
+you used last. It converts whole folder trees: every subfolder with DICOM files becomes NIfTI files, with the
 same names, files and log as the standalone dicom2nifti.exe (checked file by file on the test data: identical).
 
 * **Convert:** drop folders or *Add folder*; results next to the DICOM files or in an output folder (the folder
@@ -2383,7 +2384,7 @@ times are written without the fraction of seconds, e.g. `081502`).
 
 ### 🗃 Curate a DICOM database
 
-*Tools → 🗃 Curate a DICOM database…* (the **Curate** tab of the window above) organizes and converts data exported
+The **Curate** tab of *Tools → 🗂 DICOM curation & conversion…* organizes and converts data exported
 from PACS (e.g. syngo.via): every file is read (header only, in parallel) and put into folders built from its DICOM
 header, e.g. `DOE-JOHN--ANON54121 \ 20181115--Tumor-Imaging \ 2--C2S1D0-AbdRoutine-3-0-I31s-3`.
 
