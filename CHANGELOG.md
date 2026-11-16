@@ -10,6 +10,7 @@ First public version.
 * Python: numpy arrays and SimpleITK images load directly; new script commands `viewports`, `showall`, `fuseall`,
   `image3d`, `measurements`; colormap names in scripts ignore case, spaces and dashes; example `00_load_images.py`.
 * Brush up to 128 mm (B or Alt + wheel); ruler ends can be dragged; Z selects the zoom tool.
+* Recording: virtual cameras (NVIDIA Broadcast, OBS, Logi Capture …) can be chosen as the camera.
 * Segmentation opacity per view (the ▦ Seg slider of each view, ↺ back to the segmentation's own; saved with workspaces).
 * Licence: a free personal licence file per computer, 7-day trial without one.
 * Video tutorials on YouTube: [youtube.com/@ORCA-MI](https://www.youtube.com/@ORCA-MI) (Help → ▶ Video tutorials, About, welcome page).

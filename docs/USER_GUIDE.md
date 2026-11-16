@@ -2440,6 +2440,8 @@ pointer and a ring at every click are drawn in the video.
   covers ORCA-MI's menus or toolbar. It can be changed during the recording (⚙ on the bar).
   Off = the camera is never opened. If the camera does not start (used by Teams, Zoom … or blocked in Settings →
   Privacy → Camera), the video is recorded without it and the bar says why.
+  **Virtual cameras** (NVIDIA Broadcast with background blur or replacement, OBS, Logi Capture …) are in the camera
+  list too, as in Zoom; their program must be running while you record.
 * **Hide the patient name and ID on the views while recording** (off by default). You are responsible for
   anonymizing the images (see 🕶 Anonymize DICOM below); a note says so and must be acknowledged once.
 * **Folder**: Videos\ORCA-MI recordings by default; file name `ORCA-MI session <date time>.mp4`. Recordings stay on
