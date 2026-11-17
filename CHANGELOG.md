@@ -11,6 +11,7 @@ First public version.
   `image3d`, `measurements`; colormap names in scripts ignore case, spaces and dashes; example `00_load_images.py`.
 * Brush up to 128 mm (B or Alt + wheel); ruler ends can be dragged; Z selects the zoom tool.
 * Recording: virtual cameras (NVIDIA Broadcast, OBS, Logi Capture …) can be chosen as the camera.
+* Fix: removing a fusion with the view's ✖ (or using the view's own buttons and sliders) no longer moves the crosshair.
 * Tools → DICOM curation & conversion → Curate tab: organize PACS exports (e.g. syngo.via) into folders from DICOM header tags (patient, study, date, series …), DICOM copied / moved / left, NIfTI + Excel optional, preview, undo, parallel. The batch converter window is now *DICOM curation & conversion* (one Tools entry, opens on the tab used last; the NIfTI options are a foldable section on the Convert and Curate tabs instead of an Options tab).
 * Segmentation opacity per view (the ▦ Seg slider of each view, ↺ back to the segmentation's own; saved with workspaces).
 * Licence: a free personal licence file per computer, 7-day trial without one.
