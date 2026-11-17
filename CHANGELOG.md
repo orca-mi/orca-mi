@@ -13,6 +13,7 @@ First public version.
 * Recording: virtual cameras (NVIDIA Broadcast, OBS, Logi Capture …) can be chosen as the camera.
 * Licence 1.1: personal licence file and trial (1a), orcami.py and the examples under MIT (2a), data and privacy (5a).
 * Fix: removing a fusion with the view's ✖ (or using the view's own buttons and sliders) no longer moves the crosshair.
+* Fix: on a PC with two monitors that use different Windows scaling, the interface no longer keeps switching between big and small on first start (the automatic size waits until it is stable and is kept after a few changes).
 * Tools → DICOM curation & conversion → Curate tab: organize PACS exports (e.g. syngo.via) into folders from DICOM header tags (patient, study, date, series …), DICOM copied / moved / left, NIfTI + Excel optional, preview, undo, parallel. The batch converter window is now *DICOM curation & conversion* (one Tools entry, opens on the tab used last; the NIfTI options are a foldable section on the Convert and Curate tabs instead of an Options tab).
 * Segmentation opacity per view (the ▦ Seg slider of each view, ↺ back to the segmentation's own; saved with workspaces).
 * Licence: a free personal licence file per computer, 7-day trial without one.
