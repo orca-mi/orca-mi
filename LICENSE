@@ -1,16 +1,28 @@
 ORCA-MI Research Licence
-Version 1.0
+Version 1.1
 
 Copyright (c) 2026 Yazdan Salimi (salimiyazdan@gmail.com). All rights reserved.
 
 "ORCA-MI" (Open Radiology & Computational Analysis - Molecular Imaging) means the
 programs distributed in this repository (ORCA-MI.exe, the ORCA-MI installer),
 the accompanying files (orcami.py, examples) and the documentation.
+The Python helper orcami.py and the example scripts have their own, more
+open terms: see section 2a.
 
 1. Permitted use
    You may download, install and use ORCA-MI free of charge for
    non-commercial research and education, including academic and
    hospital research.
+
+1a. Personal licence and trial
+   Full use of ORCA-MI requires a personal licence file issued by the
+   author, free of charge for the use described in section 1. A licence
+   file is issued to one named person, is personal and may not be
+   shared, transferred or published. It may be issued for a limited time.
+   Without a licence file, ORCA-MI runs as a 7-day trial on each computer,
+   with part of its functions; after the trial it cannot be used until a
+   licence file is loaded. The author may refuse or withdraw a licence,
+   in particular when these terms are not respected.
 
 2. Not permitted
    Without prior written permission of the author you may not:
@@ -21,8 +33,17 @@ the accompanying files (orcami.py, examples) and the documentation.
       decompile or disassemble it, except as far as applicable law
       expressly permits this despite this restriction;
    d. remove or change the copyright, licence or research-use notices.
-   You may share unmodified copies of the files as published in this
-   repository, together with this licence, free of charge.
+   You may share unmodified copies of the installer or the portable zip as
+   published by the author, together with this licence, free of charge;
+   licence files are personal (section 1a) and may not be shared.
+
+2a. Python helper and example scripts
+   orcami.py and the example scripts (the examples folder of the ORCA-MI
+   repository and the copies installed with ORCA-MI) may be used, copied,
+   modified and shared, also inside your own projects and publications,
+   under the MIT licence printed at the end of this file. Section 2 does not
+   apply to them. They only control ORCA-MI; using ORCA-MI itself remains
+   under this licence.
 
 3. No clinical use
    ORCA-MI is a research tool. It is not a medical device: it has no CE
@@ -32,8 +53,9 @@ the accompanying files (orcami.py, examples) and the documentation.
    must be checked by a qualified person.
 
 4. Citation
-   If you use ORCA-MI in work that leads to a publication, presentation or
-   report, please cite it as described in CITATION.cff in this repository.
+   Work that uses ORCA-MI and leads to a publication, presentation or
+   report must cite ORCA-MI as described in CITATION.cff in the ORCA-MI
+   repository, and acknowledge its author, Yazdan Salimi.
 
 5. Third-party components
    ORCA-MI contains open-source libraries that remain under their own
@@ -44,6 +66,26 @@ the accompanying files (orcami.py, examples) and the documentation.
    nnInteractive, MONAI and AI model weights) are covered by their own
    licences. The nnInteractive model weights, and every model fine-tuned
    from them, are licensed under CC BY-NC-SA 4.0 (non-commercial use only).
+
+5a. Data and privacy
+   ORCA-MI works on your computer. It never sends images, patient data,
+   DICOM headers or file names.
+   a. A licence request sends what you type in the form (name, institution,
+      e-mail address, country, intended use, the name you give the
+      computer), a code of the computer (derived from Windows, not from
+      hardware serial numbers), the Windows version and the ORCA-MI
+      version, so that the licence file can be issued for that computer.
+   b. Everything else is optional and asked for first, and can be changed
+      at any time in Help -> Privacy & usage statistics: anonymous usage
+      statistics (how often the program and its features are opened), the
+      country of the computer (from the Windows region setting), checks for
+      new versions and AI models, and, for licensed users, usage statistics
+      linked to the licence (they can be withdrawn, and are then deleted).
+   c. Bug reports and feedback are only sent when you press Send, with the
+      text you can read before sending.
+   This information is used only to issue licences, to improve ORCA-MI and
+   to inform users; it is not sold or given to others. To see, correct or
+   delete what is kept about you, contact the author.
 
 6. No warranty, no liability
    ORCA-MI is provided "as is", without warranty of any kind, express or
@@ -59,3 +101,26 @@ the accompanying files (orcami.py, examples) and the documentation.
 
 For commercial use or any other permission, contact the author:
 salimiyazdan@gmail.com
+
+
+MIT licence (for orcami.py and the example scripts only, section 2a)
+
+Copyright (c) 2026 Yazdan Salimi
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

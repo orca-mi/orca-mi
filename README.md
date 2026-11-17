@@ -143,7 +143,10 @@ repository, or write to salimiyazdan@gmail.com.
 
 ORCA-MI is free for non-commercial research and education; see [LICENSE](LICENSE) (not an open-source licence:
 no commercial use, no clinical use, no modified copies, no reverse engineering). The open-source libraries it
-contains keep their own licences.
+contains keep their own licences. The Python helper `orcami.py` and the [example scripts](examples) are under the
+**MIT licence**: use, change and share them freely, also in your own projects. ORCA-MI never sends images, patient
+data or file names; what a licence request and the optional statistics send is listed in the LICENSE (section 5a)
+and in the program (**Help → 🔒 Privacy & usage statistics**).
 
 **Licence file:** ORCA-MI runs as a 7-day trial on each computer; for longer use, request your **free personal
 licence** in the program (**Help → 🔑 Licence… → Request your free licence**) and load the `.lic` file you receive by
