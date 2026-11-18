@@ -5,6 +5,7 @@
 * Several files dropped at once: 🖼 All as images / 🎨 All as segmentations in one click.
 * New segmentations get colours different from the other segmentations of the same study (on by default; files with their own colour table keep theirs).
 * 🏷 Segment name guide: right-click a view (2D or 3D) → Show segment name guide: a line in each segment's colour to its name at the edge of the view.
+* Fix: AI set-up with new NVIDIA drivers (2026, e.g. 610): the GPU's CUDA version is found again, so the CUDA build of PyTorch is installed instead of the CPU one; choosing a CUDA build after a CPU one now really replaces it.
 * Fix: links in ORCA-MI (start page, About, NEMA window) open in the browser; Help → 🌐 ORCA-MI website (orca-mi.github.io) and 🐙 ORCA-MI on GitHub.
 
 ## 0.1.1 — 2026-11-18
