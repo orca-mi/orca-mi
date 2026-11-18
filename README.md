@@ -1,6 +1,6 @@
 # 🐋 ORCA-MI
 
-**Open Radiology & Computational Analysis — Molecular Imaging** · version 0.1.0
+**Open Radiology & Computational Analysis — Molecular Imaging** · version 0.1.1
 
 ### 🐋 *Agile intelligence, deep insight*
 
@@ -22,15 +22,17 @@ to the PACS as DICOM.
 
 | | **Installer** | **Portable** |
 |---|---|---|
-| File | [ORCA-MI-0.1.0-setup.exe](download/ORCA-MI-0.1.0-setup.exe) | [ORCA-MI-0.1.0-portable.zip](download/ORCA-MI-0.1.0-portable.zip) |
+| File | [**ORCA-MI-setup.exe**](https://github.com/orca-mi/orca-mi/releases/latest/download/ORCA-MI-setup.exe) | [**ORCA-MI-portable.zip**](https://github.com/orca-mi/orca-mi/releases/latest/download/ORCA-MI-portable.zip) |
 | Administrator rights | not needed (installs for the current user) | not needed |
 | Where it runs | `%LOCALAPPDATA%\Programs\ORCA-MI` | anywhere: Desktop, USB stick, shared folder |
 | Start menu / desktop shortcut | ✔ (desktop optional) | – |
 | "Open with ORCA-MI" for .nii .nrrd .mha .mhd .dcm | optional | – |
 | Uninstall | Windows *Apps* list | delete the folder |
 
-Both contain the same program. Settings, models and AI environments are kept in your user profile, so switching
-between the two, or updating, keeps everything.
+Both contain the same program, always the latest version ([all versions](https://github.com/orca-mi/orca-mi/releases)).
+Settings, models and AI environments are kept in your user profile, so switching between the two, or updating, keeps
+everything. **Updating:** ORCA-MI tells you when a new version is out (if you allow notifications) and installs it
+for you, or run the new installer over the old one (no need to uninstall). Also on [orca-mi.github.io](https://orca-mi.github.io).
 
 **Requirements:** Windows 10 or 11, 64-bit. A GPU is used for the 3D view; the AI features run on an NVIDIA GPU
 when one is available, otherwise on the CPU.
@@ -156,7 +158,7 @@ e-mail. Details: [Licence and trial](docs/USER_GUIDE.md#-licence-and-trial).
 If you use ORCA-MI in a publication, please cite it ([CITATION.cff](CITATION.cff); GitHub's *Cite this repository*
 button gives APA and BibTeX):
 
-> Salimi, Y. (2026). *ORCA-MI: Open Radiology & Computational Analysis – Molecular Imaging* (Version 0.1.0)
+> Salimi, Y. (2026). *ORCA-MI: Open Radiology & Computational Analysis – Molecular Imaging* (Version 0.1.1)
 > [Computer software]. https://github.com/orca-mi/orca-mi
 
 ---

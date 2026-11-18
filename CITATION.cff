@@ -12,8 +12,8 @@ authors:
   - family-names: Salimi
     given-names: Yazdan
     email: salimiyazdan@gmail.com
-version: 0.1.0
-date-released: 2026-11-16
+version: 0.1.1
+date-released: 2026-11-18
 repository-code: "https://github.com/orca-mi/orca-mi"
 url: "https://github.com/orca-mi/orca-mi"
 license-url: "https://github.com/orca-mi/orca-mi/blob/main/LICENSE"

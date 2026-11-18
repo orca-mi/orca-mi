@@ -17,6 +17,7 @@ In the program: **Help → 📖 User guide** opens this guide; **Help → 🐞 R
 
 * [1. Getting started](#1-getting-started)
     * [Getting ORCA-MI: portable or installer](#getting-orca-mi-portable-or-installer)
+    * [⬆ Updating ORCA-MI](#-updating-orca-mi)
     * [First start](#first-start)
     * [Mouse & keys](#mouse--keys)
     * [Memory used](#memory-used)
@@ -146,7 +147,7 @@ file. Script / Python: `licence` (status),
 
 ### Getting ORCA-MI: portable or installer
 
-| | `ORCA-MI.exe` (portable) | `ORCA-MI-0.1.0-setup.exe` (installer) |
+| | `ORCA-MI-portable.zip` (portable) | `ORCA-MI-setup.exe` (installer) |
 |---|---|---|
 | Administrator rights | not needed | not needed (installs for the current user) |
 | Where it runs | anywhere: Desktop, USB stick, shared folder | `%LOCALAPPDATA%\Programs\ORCA-MI` |
@@ -157,6 +158,25 @@ file. Script / Python: `licence` (status),
 Both contain the same program. Settings, models and AI environments are stored in your user profile, so
 switching between the two, or updating, keeps everything. Windows may show a SmartScreen "unknown publisher"
 note the first time; choose *More info → Run anyway* (a code-signing certificate would remove it).
+
+Both are on the download page [github.com/orca-mi/orca-mi/releases/latest](https://github.com/orca-mi/orca-mi/releases/latest)
+and on [orca-mi.github.io](https://orca-mi.github.io).
+
+### ⬆ Updating ORCA-MI
+
+* **From ORCA-MI:** with *notifications* switched on (asked at the first start; Help → 🔒 Privacy & usage statistics),
+  ORCA-MI looks for a newer version on GitHub when it opens and recommends it in a small window with what is new.
+  **⬇ Download and install** downloads the installer and checks it (size, SHA-256 and the author's signature); then
+  **Install now and restart** (ORCA-MI asks about unsaved work, closes, the update installs and ORCA-MI starts again)
+  or **Install when I close ORCA-MI**. *Later* asks again at the next start, *Skip this version* only for a newer one.
+  **Help → ⬆ Check for ORCA-MI updates…** looks at any time (also without notifications). The check only downloads a
+  small public file from GitHub: nothing about you or your computer is sent.
+* **By hand:** download the new installer and run it: it replaces the old version in the same place (no need to
+  uninstall). Portable copy: replace the folder with the new zip.
+* Settings, licence, AI models and environments, the Q.SPECT library and the scanner QC history are in your user
+  profile: an update keeps them.
+
+Script: `checkappupdate` (the latest version on GitHub).
 
 ### First start
 
