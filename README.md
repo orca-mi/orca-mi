@@ -177,7 +177,7 @@ e-mail. Details: [Licence and trial](docs/USER_GUIDE.md#-licence-and-trial).
 If you use ORCA-MI in a publication, please cite it ([CITATION.cff](CITATION.cff); GitHub's *Cite this repository*
 button gives APA and BibTeX):
 
-> Salimi, Y. (2026). *ORCA-MI: Open Radiology & Computational Analysis – Molecular Imaging* (Version 0.1.1)
+> Salimi, Y. (2026). *ORCA-MI: Open Radiology & Computational Analysis – Molecular Imaging* (Version 0.1.2)
 > [Computer software]. https://github.com/orca-mi/orca-mi
 
 ---

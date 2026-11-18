@@ -959,6 +959,22 @@ in which view (the view under the mouse is preselected; an empty view gets "imag
 **nickname** (shown instead of the file name; for a segmentation, its name) and a **comment**. *Don't ask again*
 keeps the settings; Shift + drop = overlay, Ctrl + drop = segmentation.
 
+**Several files at once** (NIfTI, NRRD, MHA …): one row per file with its role, the image it goes onto, its study
+and a nickname. **🖼 All as images** / **🎨 All as segmentations** set every row at once (segmentations go onto the
+image of the view; change single rows afterwards).
+
+**Colours different from the other segmentations of the study** (a tick box for segmentations, in both drop
+windows; on by default): a label whose colour is close to one already used by a segmentation of the same study (same
+Study Instance UID; without one, the image's own segmentations), or by another file of the same drop, gets another,
+well separated colour. Colours that are already different are kept, and files with their own colour table (e.g.
+3D Slicer `.seg.nrrd`) keep theirs.
+
+**🏷 Segment name guide** (right-click a view, 2D or 3D → *Show segment name guide*; off by default, per view): a
+line in each segment's colour goes from the segment (its centre on this slice, or in 3D) to its name in a column at
+the left or right edge of the view, outside the body. Names follow the label names (with the segmentation's name
+when several segmentations are shown); hidden labels are left out; at most the 30 largest. Scripts:
+`segguide on|off [vp=<k>|all]`, `segcolors`.
+
 When closing, ORCA-MI also warns about running jobs (AI, downloads, registrations) and about images registered since
 the last workspace was saved.
 
