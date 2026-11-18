@@ -50,7 +50,8 @@ time. Click **More info → Run anyway**.
 | **Measure** | SUVbw / SUL / SUVbsa · volume (MTV), SUVmean, SUVmax, **SUVpeak**, **TLG** per segment or lesion · Dice, HD95 and other overlap metrics |
 | **Dynamic / multi-time-point** | motion correction · time-activity curves per segment · **Patlak Ki** and Ki maps · effective half-life and time-integrated activity for therapy SPECT |
 | **Q.SPECT** | quantitative SPECT: counts → Bq/mL with your conversion factors per scanner, isotope and reconstruction, scaled to the acquisition time (per projection or total, e.g. StarGuide); your scanner library is kept across updates and exported as JSON |
-| **NEMA IEC phantom** | contrast recovery (mean / max / peak), NEMA QH, background variability, SPECT calibration from a uniform phantom, PDF and Excel reports; ROIs exchanged with ORCA-MI segmentations, calibration saved to Q.SPECT |
+| **NEMA IEC phantom** | contrast recovery (mean / max / peak), NEMA QH, background variability, PDF and Excel reports; ROIs exchanged with ORCA-MI segmentations |
+| **Scanner calibration & QC** | PET and SPECT calibration from a uniform phantom (SPECT factor to Q.SPECT, PET measured / true) · history of every scanner: calibration and NEMA IEC records compared with the previous and a reference record, your own ± % tolerances, EARL1 / EARL2 bands for FDG PET, trend charts, JSON export / import, Excel report |
 | **Batch DICOM → NIfTI** | whole folder trees, Excel tables of the DICOM headers, PET in SUV, gantry-tilt and slice-spacing correction, file renaming, optional dcm2niix |
 | **Decay & values** | decay correction of images and an activity calculator (Bq … Ci, common PET / SPECT / therapy nuclides) · data type conversion, clipping, normalisation, exact percentiles |
 | **CT dose** | per-slice tube current, mAs, CTDIvol, water-equivalent diameter, SSDE, density / μ-maps |

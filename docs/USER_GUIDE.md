@@ -51,6 +51,7 @@ In the program: **Help → 📖 User guide** opens this guide; **Help → 🐞 R
     * [⏳ Decay correction](#-decay-correction)
     * [🔢 Data type, clipping, normalisation and percentiles](#-data-type-clipping-normalisation-and-percentiles)
     * [🎯 NEMA IEC phantom analysis](#-nema-iec-phantom-analysis)
+    * [📈 Scanner calibration & QC](#-scanner-calibration--qc)
     * [🧠 Brain PET resolution (EIR, EARL)](#-brain-pet-resolution-eir-earl)
     * [Loading: role, nickname and comment](#loading-role-nickname-and-comment)
     * [📅 Studies in the image list](#-studies-in-the-image-list)
@@ -835,11 +836,12 @@ are identical (checked on an EARL phantom with two reconstructions: every sphere
   the hot sphere, 3D spheres or 2D circles, hand painting (e.g. to cut an air bubble), label map import / export.
 * **Setup:** sphere-to-background ratio (manual, from concentrations or from the syringe activities), peak radius,
   cold background (absolute recovery), decay correction of the expected concentration, SUV, report information.
-* **Calibration:** SPECT calibration from a uniform phantom (total activity or mean in a uniform region), with
-  decay correction → counts per voxel per Bq/mL.
+* **Calibration:** calibration phantoms are measured in the [📈 Scanner calibration & QC](#-scanner-calibration--qc)
+  window (the tab has a button that opens it); its *Use in NEMA IEC Setup* puts a SPECT factor into Setup.
 * **Views:** ortho, side by side, 3D; **Smooth** (key **I**) switches between interpolated display and voxels as blocks
   (starts as ORCA-MI's *Smooth interpolation*; display only, the results do not change).
 * **Results:** mean / max / peak contrast recovery, NEMA QH, background variability (COV), recovery curves.
+  **📈 Save to scanner history** keeps the result of the chosen image in the history of its scanner (see below).
 * **Export report:** PDF, Excel (re-importable), session, label map, figures (axial, ortho, fused, side by side, MIP,
   3D segments) and GIFs.
 
@@ -856,6 +858,45 @@ The **🐋 ORCA-MI** menu of the window links it to ORCA-MI:
 Script: `nemawindow`, `nemaadd [keep=0]` (send the loaded PET/SPECT and CT with the default roles), `nemaseg`,
 `nemasend`, and headless `nema session=<file.json>|out=<folder>|reader=orca` (calculates
 a saved session and exports the full report; `reader=nema` uses the tool's own DICOM reader).
+
+### 📈 Scanner calibration & QC
+
+*Tools → 📈 Scanner calibration & QC…* (also from the NEMA IEC window's Calibration tab and the Q.SPECT window) opens
+its own window with three tabs. It follows the quantification of every PET and SPECT scanner over time.
+
+* **Calibration:** a uniform phantom with a known activity (load a file or a DICOM folder, or *🐋 ORCA-MI* → an image
+  already loaded). Draw or fit the cylindrical VOI, enter the activity, its time, the residual and the scan start.
+  * **SPECT** (count image): calibration factor = counts per voxel per Bq/mL for the acquisition time. *Use in NEMA IEC
+    Setup* and *Save to the Q.SPECT library…* send it on.
+  * **PET** (image in Bq/mL): **measured / true activity concentration** (1.00 = the scanner agrees with the dose
+    calibrator).
+  * The set-up (VOI, activities, times) is kept for next time.
+* **📈 Save to scanner history** (Calibration tab, and NEMA IEC window → Results): choose the scanner (found again from
+  the DICOM header: serial number, else station + model; or a new one, filled from the header), the isotope, the
+  reconstruction, the acquisition date, the operator and a note; tick *Reference* for the acceptance test. After saving,
+  the record is compared at once with the **previous** record and with the **reference** of the same scanner · isotope ·
+  reconstruction, and every value outside the tolerance is shown in red.
+* **What is kept:** NEMA IEC: RC mean / max / peak per sphere (measured / true; needs the sphere concentration in
+  Setup, or the cold-background mode), contrast recovery mean / max / peak, background variability, lung residual.
+  Calibration: the factor (SPECT per minute of acquisition, PET measured / true) and the uniformity (COV) of the VOI.
+* **Scanners:** name, PET / SPECT, manufacturer, model, station, serial number, notes; **tolerances** in ± % per value
+  (RC mean, RC max, RC peak, contrast recovery, background variability, lung residual, calibration factor, COV), as
+  defaults or per scanner. The change is (new − old) / old.
+* **History:** per scanner, the groups *kind · isotope · reconstruction*; a chart **per sphere** (the selected record,
+  the previous one and the reference) or **over time** (every record; a red ring = outside the tolerance, ★ =
+  reference; click a point to select that record); the records table (★ sets the reference, notes, 🗑 deletes with a
+  second click) and the comparison table of the selected record.
+* **EARL bands** (¹⁸F-FDG PET, RC mean / max / peak): EARL1 and EARL2 from Kaalep et al., Eur J Nucl Med Mol Imaging
+  2018;45:1344–1361, Table 13 (EARL1 has no peak band; the EARL2 peak band is the paper's provisional one). Click
+  **EARL1** / **EARL2** above the chart to show or hide a band; the comparison table says how many values are outside.
+* **Export / import:** *Export* → this scanner or all scanners as a JSON file, or an **Excel report** (one sheet per
+  group, the changes against the previous and the reference record, flagged cells in red). *Import…* adds the scanners
+  and records of a JSON file (records already there are skipped; a scanner with the same serial number or name is
+  the same scanner), e.g. to share the history between physicists or computers.
+* The history is kept in `%APPDATA%\ORCA-MI\scanner_qc.json` (the previous version as `scanner_qc.bak.json`); updates
+  never replace it. It holds only phantom results, no patient data.
+
+Script: `qcwindow`, `qctab scanners|calibration|history`, `qclist`, `qcexport <file.json>`, `qcimport <file.json>`.
 
 ### 🧠 Brain PET resolution (EIR, EARL)
 
