@@ -17,9 +17,7 @@ PET · SPECT · CT · MR &nbsp;—&nbsp; viewing, fusion, 3D, AI segmentation, q
 [![Video tutorials](https://img.shields.io/badge/Tutorials-YouTube-c4302b?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@ORCA-MI)
 
 [![Latest version](https://img.shields.io/github/v/release/orca-mi/orca-mi?label=version&color=1f6feb)](https://github.com/orca-mi/orca-mi/releases/latest)
-![Windows 10 / 11](https://img.shields.io/badge/Windows-10%20%7C%2011-555)
-![Free for research](https://img.shields.io/badge/free-for%20research-2e9e6b)
-![Not for clinical use](https://img.shields.io/badge/not%20for-clinical%20use-d29922)
+[![Free for research · not for clinical use](https://img.shields.io/badge/free%20for%20research-not%20for%20clinical%20use-d29922)](#licence-and-citation)
 
 </div>
 
