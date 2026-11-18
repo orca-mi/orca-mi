@@ -6,6 +6,8 @@
 
 *Built for nuclear medicine and molecular imaging, with full CT and MR support · PET/SPECT quantification · dosimetry · segmentation · registration · AI*
 
+🌐 **Website and download: [orca-mi.github.io](https://orca-mi.github.io/)** · ▶ [Video tutorials](https://www.youtube.com/@ORCA-MI)
+
 **Why ORCA?** Like the orca, ORCA-MI is **fast** (native code, GPU 3D, swift processing), **intelligent** (deep
 learning segmentation and image-to-image AI) and gives **deep insight** beneath the surface of your images
 (quantification, kinetics, dosimetry).
