@@ -1,16 +1,31 @@
+<div align="center">
+
 # 🐋 ORCA-MI
 
-**Open Radiology & Computational Analysis — Molecular Imaging** · version 0.1.1
+**Open Radiology & Computational Analysis · Molecular Imaging**
 
-### 🐋 *Agile intelligence, deep insight*
+*Agile intelligence, deep insight*
 
-*Built for nuclear medicine and molecular imaging, with full CT and MR support · PET/SPECT quantification · dosimetry · segmentation · registration · AI*
-
-> [!TIP]
-> ## 🌐 [orca-mi.github.io](https://orca-mi.github.io/) · ⬇ download ORCA-MI
-> ### ▶ [Video tutorials on YouTube](https://www.youtube.com/@ORCA-MI)
+PET · SPECT · CT · MR &nbsp;—&nbsp; viewing, fusion, 3D, AI segmentation, quantification, dosimetry, registration
 
 <br>
+
+[![Download for Windows](https://img.shields.io/badge/Download-Windows-1f6feb?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/orca-mi/orca-mi/releases/latest/download/ORCA-MI-setup.exe)
+&nbsp;
+[![Website](https://img.shields.io/badge/Website-orca--mi.github.io-24292f?style=for-the-badge&logo=googlechrome&logoColor=white)](https://orca-mi.github.io/)
+&nbsp;
+[![Video tutorials](https://img.shields.io/badge/Tutorials-YouTube-c4302b?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@ORCA-MI)
+
+[![Latest version](https://img.shields.io/github/v/release/orca-mi/orca-mi?label=version&color=1f6feb)](https://github.com/orca-mi/orca-mi/releases/latest)
+![Windows 10 / 11](https://img.shields.io/badge/Windows-10%20%7C%2011-555)
+![Free for research](https://img.shields.io/badge/free-for%20research-2e9e6b)
+![Not for clinical use](https://img.shields.io/badge/not%20for-clinical%20use-d29922)
+
+</div>
+
+<br>
+
+---
 
 **Why ORCA?** Like the orca, ORCA-MI is **fast** (native code, GPU 3D, swift processing), **intelligent** (deep
 learning segmentation and image-to-image AI) and gives **deep insight** beneath the surface of your images
