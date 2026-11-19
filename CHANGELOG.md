@@ -5,6 +5,7 @@
 * 🙂 Simple and 🛠 Expert mode (switch at the right of the menus): in Simple mode every tab shows its basic options and the others are *More options* chips (click to show a section, click again to hide it). New installations start in Simple mode; updates keep Expert mode (every option at once, as before).
 * 🕶 Anonymize DICOM → ↩ Re-identify: undo the anonymization with the decode file, into a new folder, also for what was made from the anonymized images (DICOM SEG / RTSTRUCT, NIfTI segmentations, annotations, result tables): names, IDs, birth dates, emptied fields and original UIDs come back (so later segmentations point to the original images), with the original folders or a patient / study / series structure. The decode file now also keeps the original paths, the emptied values and every UID (needed for a complete re-identification).
 * 📁 Folder view (Tools, or 📁 Show in ORCA-MI next to the output of the anonymizer, re-identify and DICOM curation): a folder as a live tree inside ORCA-MI, so session recordings can show what a tool writes; names can be hidden for the video.
+* 🐧 Linux (Ubuntu) test version: `ORCA-MI-0.1.3-ubuntu.tar.gz` in this release (same program; no session recording, system monitor or automatic updates).
 
 ## 0.1.2 — 2026-11-18
 
