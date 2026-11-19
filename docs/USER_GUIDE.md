@@ -2770,7 +2770,7 @@ database/
   *MPR of the image only*, *2 × 2* (axial and coronal of the reference and of the image) or *side by side*. When the
   reference itself is scored too, it has nothing next to it and is shown in MPR — the **colormaps** of PET / SPECT
   (default Hot iron) and of CT / MR (default Grayscale) — the **base image** (CT / MR with PET / SPECT fused on it,
-  PET / SPECT with CT / MR fused on it, or PET / SPECT alone) and, in the MPR layouts, the image of the **3D view**.
+  PET / SPECT with CT / MR fused on it, or PET / SPECT alone) and, in the MPR layouts, the image of the **3D view** and its **3D colormap** (*same as the image* or any colormap).
 * **Questions:** *✏ Edit the questions* edits the questions of this database (names, descriptions, scales, choices,
   required); start from the reference questions or from your Scores template. They are saved with the database, so
   every reader answers the same questions.
@@ -2854,7 +2854,7 @@ database/
 * **Display:** *PET / SPECT fused on its CT / MR*, *side by side*, or *only the image to segment*.
 * **Layout and colormaps** (the reader's view, set once for everyone in `segdb.json`): *Layout* MPR (axial, sagittal,
   coronal + 3D, the default), one axial view, or automatic; *Main image* the image to segment with the other one
-  fused on it (default), CT / MR under, PET / SPECT under, or PET / SPECT alone; *3D view* PET / SPECT or CT / MR;
+  fused on it (default), CT / MR under, PET / SPECT under, or PET / SPECT alone; *3D view* PET / SPECT or CT / MR and its *3D colormap* (*same as the image* or any colormap);
   *Colormap PET / SPECT* (default Hot iron) and *Colormap CT / MR* (default Grayscale). Script: `segdb …|layout=mpr|
   base=segmented|view3d=functional|cmapf=Hot iron|cmapa=Grayscale`.
 * **Tools:** every tool of the Segment tab works while segmenting a database (brushes, thresholds, region growing,

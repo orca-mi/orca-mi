@@ -58,7 +58,7 @@ everything. **Updating:** ORCA-MI tells you when a new version is out (if you al
 for you, or run the new installer over the old one (no need to uninstall). Also on [orca-mi.github.io](https://orca-mi.github.io).
 
 **Linux (Ubuntu), test version:** [**ORCA-MI-0.1.3-ubuntu.tar.gz**](https://github.com/orca-mi/orca-mi/releases/download/v0.1.3/ORCA-MI-0.1.3-ubuntu.tar.gz). ORCA-MI is made for Windows; the
-Linux version is the same program, updated less often, without session recording, the system monitor and automatic
+Linux version (still 0.1.3, from the [v0.1.3 release](https://github.com/orca-mi/orca-mi/releases/tag/v0.1.3)) is the same program, updated less often, without session recording, the system monitor and automatic
 updates. Ubuntu 20.04 or newer (or another Linux with glibc 2.30+), 64-bit: unpack it and start `./orca-mi`
 (`tar -xzf ORCA-MI-0.1.3-ubuntu.tar.gz`, `cd ORCA-MI-0.1.3-ubuntu`, `./orca-mi`); the included README-LINUX.txt
 lists what to install if it does not start. The trial and the free licence work as on Windows (a licence is made for
@@ -192,7 +192,7 @@ e-mail. Details: [Licence and trial](docs/USER_GUIDE.md#-licence-and-trial).
 If you use ORCA-MI in a publication, please cite it ([CITATION.cff](CITATION.cff); GitHub's *Cite this repository*
 button gives APA and BibTeX):
 
-> Salimi, Y. (2026). *ORCA-MI: Open Radiology & Computational Analysis – Molecular Imaging* (Version 0.1.3)
+> Salimi, Y. (2026). *ORCA-MI: Open Radiology & Computational Analysis – Molecular Imaging* (Version 0.1.4)
 > [Computer software]. https://github.com/orca-mi/orca-mi
 
 ---

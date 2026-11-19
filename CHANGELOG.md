@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.4 — 2026-11-19
+
+* Segment a database and Score a database: choose the **3D colormap** of the readers' 3D view (same as the image, or any colormap), next to the choice of the image shown in 3D (PET / SPECT or CT / MR). Script option `cmap3d=` and command `cmap3d`.
+* Windows only: the Linux (Ubuntu) test version stays at 0.1.3 (download it from the v0.1.3 release).
+
 ## 0.1.3 — 2026-11-19
 
 * 🙂 Simple and 🛠 Expert mode (switch at the right of the menus): in Simple mode every tab shows its basic options and the others are *More options* chips (click to show a section, click again to hide it). New installations start in Simple mode; updates keep Expert mode (every option at once, as before).
