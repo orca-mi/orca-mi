@@ -19,6 +19,7 @@ In the program: **Help → 📖 User guide** opens this guide; **Help → 🐞 R
     * [Getting ORCA-MI: portable or installer](#getting-orca-mi-portable-or-installer)
     * [⬆ Updating ORCA-MI](#-updating-orca-mi)
     * [First start](#first-start)
+    * [🙂 Simple and 🛠 Expert mode](#-simple-and--expert-mode)
     * [Mouse & keys](#mouse--keys)
     * [Memory used](#memory-used)
     * [📈 System monitor (CPU, RAM, GPU)](#-system-monitor-cpu-ram-gpu)
@@ -205,6 +206,20 @@ script that is embedded in the exe (written to `%APPDATA%\ORCA-MI\orcami_bridge.
   `to_gpu`). Predictions are mapped back from the network range (`output_b_min/max`) to intensities (`output_lower/upper_intensity`, read from `params_to_torch_save-record.json` or the checkpoint): "Undo output normalization" = auto / on / off.
 
 Check an environment from the AI tab with **Environment check**.
+
+### 🙂 Simple and 🛠 Expert mode
+
+The switch at the right of the menus (🙂 Simple / 🛠 Expert) changes how much each tab of the tool panel shows; it
+changes no image, setting or result, and can be clicked at any time.
+
+* **🙂 Simple** (new installations start in it): every tab is there, in the same order, but each shows only its basic
+  options (e.g. Image: window / level, colormap, fusion, PET / SPECT units, display). The other sections are the
+  **More options** chips below them: click a chip to show that section, click it again (✕) to hide it. Chips stay open
+  until ORCA-MI is closed. The menus and the toolbar are the same as in Expert mode.
+* **🛠 Expert**: every section of every tab at once (ORCA-MI as before 0.1.3). Updates from 0.1.2 or older keep this
+  mode.
+
+Script: `uimode simple|expert`.
 
 ### Mouse & keys
 
@@ -2600,12 +2615,36 @@ Tools → **🕶 Anonymize DICOM…** writes anonymized copies of DICOM files; t
 4. **Output**: a new folder (not inside a source folder) with `<new ID>/<study date>_study<n>/<series>_<modality>/00001.dcm`
    (no names in the folder names), and the **decode file**: JSON always, CSV and Excel if ticked, with new ID, new
    name, original ID, original name, original birth date (and the old → new Study / Series UIDs when they were
-   replaced). Keep the decode file apart from the anonymized images.
+   replaced). The JSON decode file also keeps each file's original path, the original values of the emptied fields
+   and every old → new UID, so that the anonymization can be undone completely (↩ Re-identify, below). Keep the
+   decode file apart from the anonymized images: it identifies the patients.
 
 **🔑 Decode file**: *📂 Load a decode file…* (.json, .csv or .xlsx) lists its patients with the original names hidden
 and marks the ones whose anonymized images are loaded; **👁 Show original names…** shows them after your approval
 (it warns when a recording is running). Scripts: `anonymize src=<folder>|out=<folder>|prefix=…|uids=0|1|private=0|1|birth=keep|year|remove|decode=<file>|csv=0|1|xlsx=0|1`,
 `anondecode <file>` (counts only: the log never holds names).
+
+**↩ Re-identify: back to the real patients** (same window, after the decode file is loaded and approved): copies the
+anonymized folders, and what was made from them, into a **new folder** with the real patients back. Nothing is changed
+in the folders you choose.
+
+* **Folders**: the anonymized output and any folder with results made from it (DICOM SEG / RTSTRUCT, exports, NIfTI
+  segmentations, annotations, result tables …). Patients are found by the DICOM patient ID or by a folder named after
+  the anonymized ID.
+* **DICOM**: patient name, ID, birth date and the emptied fields come back, the "identity removed" marks go, and replaced
+  UIDs are mapped back everywhere, also inside SEG / RTSTRUCT made later, so they point to the original images. Changes
+  made to the anonymized files are kept. *Copy private tags from the original files* (off by default) brings back the
+  private (manufacturer) tags from the originals when they are still at their original path.
+* **Other files**: copied; the anonymized ID becomes the original ID in file and folder names and, if ticked, the IDs and
+  names inside text tables (.csv .tsv .txt .json …) are replaced (whole words only: ANON001 is not changed in ANON0011).
+* **Folder structure**: **📁 Original folders** (each file at its original path below the output folder; added files go
+  into the original folder matching their anonymized folder) or **🧑 Patient / study / series** (the anonymized layout
+  with `<real ID>_<name>` folders).
+* Decode files made before ORCA-MI 0.1.3, and .csv / .xlsx decode files, hold only the names, IDs and birth dates (and
+  the study / series UIDs): only the patient / study / series structure is possible, and the emptied fields and other
+  UIDs stay anonymized. Files of patients not in the decode file go to `_not re-identified`.
+* A report with the counts is written into the output folder. Script:
+  `reidentify decode=<file>|src=<folder>[;<folder>]|out=<folder>|structure=original|patient|text=0|1|private=0|1` (counts only).
 
 ## 8. Sessions, workspaces and reader studies
 

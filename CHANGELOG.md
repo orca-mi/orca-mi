@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.3 — 2026-11-19
+
+* 🙂 Simple and 🛠 Expert mode (switch at the right of the menus): in Simple mode every tab shows its basic options and the others are *More options* chips (click to show a section, click again to hide it). New installations start in Simple mode; updates keep Expert mode (every option at once, as before).
+* 🕶 Anonymize DICOM → ↩ Re-identify: undo the anonymization with the decode file, into a new folder, also for what was made from the anonymized images (DICOM SEG / RTSTRUCT, NIfTI segmentations, annotations, result tables): names, IDs, birth dates, emptied fields and original UIDs come back (so later segmentations point to the original images), with the original folders or a patient / study / series structure. The decode file now also keeps the original paths, the emptied values and every UID (needed for a complete re-identification).
+
 ## 0.1.2 — 2026-11-18
 
 * Several files dropped at once: 🖼 All as images / 🎨 All as segmentations in one click.
