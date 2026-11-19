@@ -106,6 +106,7 @@ In the program: **Help → 📖 User guide** opens this guide; **Help → 🐞 R
     * [🗂 DICOM curation & conversion (batch DICOM → NIfTI)](#-dicom-curation--conversion-batch-dicom--nifti)
     * [🗃 Curate a DICOM database](#-curate-a-dicom-database)
     * [⏺ Record a session (training video)](#-record-a-session-training-video)
+    * [📁 Folder view (folders in a recording)](#-folder-view-folders-in-a-recording)
     * [🕶 Anonymize DICOM](#-anonymize-dicom)
 * [8. Sessions, workspaces and reader studies](#8-sessions-workspaces-and-reader-studies)
     * [♻ Autosave, crash recovery and workspaces](#-autosave-crash-recovery-and-workspaces)
@@ -2594,6 +2595,19 @@ it reads *🔍 one window* while a window is shown alone). When it is saved, a m
 Script: `record start|quality=low|standard|high|ultra|mic=0|1|micdev=<part of name>|cam=0|1|camdev=<part of name>|corner=0-3|camsize=0-2|round=0|1|pointer=arrow|circle|none|clicks=0|1|keys=0|1|keystop=0|1|follow=0|1|cambox=0|1|camcolor=r,g,b|mark=<text>|marktop=0|1|markalign=0-2|marksize=0-2|folder=…|hide=0|1`,
 `record pause|resume|stop|mic 0|1|cam 0|1|follow 0|1|camplace <corner 0-3> <size 0-2> <round 0|1>|cammove 0|1|campos <x> <y>|mark <text>|devices|status`.
 On Windows "N" editions the video encoder needs the free *Media Feature Pack*.
+
+### 📁 Folder view (folders in a recording)
+
+The recording films only ORCA-MI's windows, not Windows Explorer. To show in a video what a tool writes, open
+**Tools → 📁 Folder view…**, or **📁 Show in ORCA-MI** next to *Open the output folder* in 🕶 Anonymize DICOM, in its
+↩ Re-identify section and in the Curate tab of 🗂 DICOM curation & conversion. The window shows the folder as a tree
+(subfolders, files, number of files and size of each folder) and, with **🔄 Live**, is read again every second, so the
+new folders and files appear while the tool runs. At most 50 000 entries are read and 300 shown per folder.
+
+**🙈 Hide names for the video**: the folder path is hidden and, if a decode file is loaded in 🕶 Anonymize DICOM, the
+original patient IDs become *Patient 1, Patient 2 …* and the parts of their names *NAME* (in folder and file names);
+without a decode file every folder becomes *Folder 1, 2 …* and every file *file 1, 2 …* (extensions kept). Script:
+`folderview <folder>[|hide=0|1][|live=0|1]`, `folderview close` (counts only).
 
 ### 🕶 Anonymize DICOM
 
