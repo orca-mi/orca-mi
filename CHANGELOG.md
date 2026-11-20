@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.6 — 2026-11-20
+
+* Segment a database and Score a database: a **"Set it up yourself"** shortcut next to the readers' and the everyone shortcuts. It opens the set-up window with the database folder already chosen (as Tools → Segment / Score a database), where anyone sets their own name and options. Always written in the database folder; a tick puts it on the Desktop too.
+
 ## 0.1.5 — 2026-11-20
 
 * Double-clicking a DICOM file (Open with ORCA-MI) opens its whole folder in the DICOM browser, as if the folder were dropped: choose the series to load.

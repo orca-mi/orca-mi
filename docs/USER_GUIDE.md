@@ -2777,7 +2777,10 @@ database/
 * **Start scoring** right away, or **Save the set-up, sessions and shortcuts**. Saved in the database folder:
   `scoredb.json` (the set-up: title, reference, order, blinding, questions, view, readers), `session_<reader>.json`
   for each reader, and **shortcut files** `<reader>[ - <comment>].orcascore` plus `Everyone - choose your name[ - <comment>].orcascore`
-  (an older shortcut of the same reader is replaced when the comment changes). Scores go
+  (an older shortcut of the same reader is replaced when the comment changes), and
+  `Set it up yourself - scoring[ - <comment>].orcascore`, which opens the *Score a database* window with this
+  folder already chosen (as Tools → Score a database): anyone sets their own name and options there (tick
+  *one "set it up yourself"* for it on this Desktop too). Scores go
   to `database/_scores/<patient>/<config>_<reader>.json` plus a summary CSV. Opening the dialog on a database set
   up before reloads its set-up.
 * **Shortcuts for the readers:** give each physician the database folder. A reader double-clicks *their*
@@ -2866,7 +2869,9 @@ database/
   (choose your name)[ - <comment>].orcaseg`, which asks who is segmenting (with the readers' descriptions, the
   comment and the description), in the database folder; on the Desktop as ticked (`ORCA-MI segmentation - <title> -
   <comment> - <reader>`). Double-click a shortcut (installer version) or drop it onto ORCA-MI to continue as that
-  reader, from the same starting point.
+  reader, from the same starting point. `Set it up yourself - segmentation[ - <comment>].orcaseg` opens the
+  *Segment a database* window with this folder already chosen (as Tools → Segment a database), where anyone sets
+  their own name and options (tick *the "set it up yourself" shortcut too* for it on this Desktop).
 * **Sharing the database:** share the folder (network drive, USB disk, cloud folder): the set-up, the shortcuts (no
   paths inside: they work wherever the folder is) and the nnU-Net predictions travel with it. The reviewer only
   double-clicks their shortcut; nothing else to set up (ORCA-MI with a licence; no AI model needed when the
