@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.5 — 2026-11-20
+
+* Double-clicking a DICOM file (Open with ORCA-MI) opens its whole folder in the DICOM browser, as if the folder were dropped: choose the series to load.
+* Info tab: geometry, patient and header values use the whole width of the panel (they were cut short, even in a wide panel); the nickname box is as wide as the panel.
+* The colourful appearance is on for new installations (Settings → Appearance).
+
 ## 0.1.4 — 2026-11-19
 
 * Segment a database and Score a database: choose the **3D colormap** of the readers' 3D view (same as the image, or any colormap), next to the choice of the image shown in 3D (PET / SPECT or CT / MR). Script option `cmap3d=` and command `cmap3d`.
