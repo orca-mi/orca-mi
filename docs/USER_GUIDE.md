@@ -1153,7 +1153,9 @@ started).
 **Segment on:** the image nnInteractive looks at: *the image I click on* (default) or a chosen image. You can
 click on the views of any image (e.g. click on the CT while nnInteractive segments the PET); the result goes into the
 active segmentation, mapped into its grid when that is another image (tested: identical to SimpleITK nearest
-resampling).
+resampling). The same choice is in the **AI group of the toolbar** (*on: …*, next to the nnInteractive tools), with a
+**✔ Next** button there = ✔ Next object (Enter). The *⚡ Speed up* options (crop to the body, z-range) are a foldable
+section, open by itself when one of them is on.
 
 **You always see when it is working.** A banner on one view (the active one) shows *Loading nnInteractive…* while the model
 loads, then *nnInteractive segmenting…* with a spinner, the elapsed time, the time left and a progress bar, and
