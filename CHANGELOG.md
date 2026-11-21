@@ -9,6 +9,11 @@
 * Segment a database: readers who start **from scratch** are not asked the score questions (nothing to judge yet).
 * Segment a database: **summary of all readers** (`_segmentations/summary_all_readers.csv`, updated at every save); **Tools → 📊 Segment a database results** shows every reader's time spent, time of day, normal / approved cases and scores (means and the distribution of each score) as tables and charts in the Results tab, which can be saved as JPEG / PNG, Excel and CSV, and each reader is asked once whether the **time of day** and the **time spent** may be recorded (two separate choices; otherwise only the date / no duration).
 * AI group of the toolbar: choose the image nnInteractive segments (*the image I click on* or a loaded image) and **✔ Next** (next object), without opening the Segment tab. The *⚡ Speed up* options (AI tab, nnInteractive) are now a foldable section.
+* 3D view: with *Use image colormap* off (3D view tab), the colour bar of the 3D view and its right-click *Colormap* change only the 3D view's colours; the 2D views keep theirs.
+* Narrow tool panel (laptops): rows with drop-down menus (e.g. the segmentation and label pickers of the spill-out correction) continue on the next line instead of being cut off.
+* Segment tab: **Threshold → label** and **Double threshold** can be limited to a **3D box** (📦 only inside a 3D box; drag its edges on the views, as in Crop).
+* nnInteractive *Segment on* (Segment tab and AI toolbar group): lists only the images shown on the views, grouped by study and then series.
+* The segmentation opacity slider is on every view that shows a segmentation (also another image's); right-click it for **outline / filled in this view**.
 
 ## 0.1.6 — 2026-11-20
 

@@ -598,7 +598,10 @@ the Python API. Script / Python: `hanging`, `hanging PET/CT`, `hanging auto=0`, 
   only** (e.g. strong on the CT views, faint on the PET view); the other views keep theirs. **↺** next to it goes back
   to the segmentation's own opacity (Segment tab). The same slider is in the view's right-click menu, under *Show
   segmentation*. Saved with workspaces. Script: `viewsegopacity <0..1|own>[|vp=<i>]` (`segopacity` still sets the
-  segmentation's own opacity, for every view).
+  segmentation's own opacity, for every view). The slider is on every 2D view that shows a segmentation, also one of
+  another image (e.g. the PET's segmentation on the CT view). **Outline / filled per view:** right-click the slider (or
+  the view) → *segmentation in this view*: ▢ outline, ■ filled or *as set* (the Segment tab's outline tick). Script:
+  `viewsegoutline 1|0|own[|vp=<i>]`.
 
 ### 3D view: image and segments on / off
 
@@ -1150,7 +1153,8 @@ and used from there afterwards, also offline. The folder in use is shown under t
 nnInteractive, starts again by itself and offers to restore the session (autosaved just before nnInteractive
 started).
 
-**Segment on:** the image nnInteractive looks at: *the image I click on* (default) or a chosen image. You can
+**Segment on:** the image nnInteractive looks at: *the image I click on* (default) or a chosen image (listed: the
+images shown on the views, grouped by study (date) and then series). You can
 click on the views of any image (e.g. click on the CT while nnInteractive segments the PET); the result goes into the
 active segmentation, mapped into its grid when that is another image (tested: identical to SimpleITK nearest
 resampling). The same choice is in the **AI group of the toolbar** (*on: …*, next to the nnInteractive tools), with a
@@ -1279,6 +1283,12 @@ Segment tab → **📊 Statistics in segments**:
 ### 📈 Iterative segmentation (XEOS method)
 
 **Multi threshold:** the double threshold takes up to five images (➕ image: C, D, E), all combined with the same AND / OR, and its limit takes several segments (their union), inside or outside.
+
+**Only inside a 3D box:** *Threshold → label* and the double threshold each have a tick **📦 only inside a 3D box**:
+only the voxels inside the box are thresholded (e.g. one lesion), not the whole image. The box is placed around the
+crosshair (size x / y / z in mm, **⌖ Around the crosshair**, or **⬚ Whole image**) and drawn in yellow on the views of
+its image while the Segment tab is open: drag its edges to adjust it, as in Crop. Both sections use the same box.
+Script: `thrbox on=1|dual=1|img=<index>|mm=40,40,40|around=1|lo=x,y,z|hi=x,y,z`.
 
 Segment tab → **Iterative segmentation (PET lesions)**. This is a port of Yazdan Salimi's XEOS iterative segmentation (3D Slicer); it gives identical results on a reference test.
 
