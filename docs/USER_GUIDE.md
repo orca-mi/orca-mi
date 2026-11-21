@@ -449,7 +449,7 @@ edge to make the panel wider.
 
 **Whole panels in their own window.** The top row of the tool panel (*TOOL PANEL*) has **⧉ Pop out the whole
 panel**: the whole tool panel, with all its tabs and its icon rail, moves to its own window and the images get the
-space. The image list (*IMAGE LIST*, left) has **⧉ Pop out the list** in the same way. In the main window a slim strip
+space. The image list (*IMAGE LIST*, left) has **⧉ Pop out** in the same way. In the main window a slim strip
 stays on that side with **⇤ / ⇥**, *back* and *show* (bring the window to the front); in the window, **⇥ Put the whole
 panel back** / **⇤ Put the list back** (or close the window). In a popped-out image list, double-click a thumbnail to
 show it in the active view (dragging onto the views works only inside the main window). ORCA-MI always starts with
@@ -2909,6 +2909,15 @@ database/
   cores, GPU, time zone, screen). `progress_<user>.log` gets a tqdm-like line per study:
   `time | [  12/120] 10.0% |██░░…| study | this 03:12 | mean 02:50/item | ETA 5:06:00`. Reading sessions (scoring)
   save the same information and a `<title>_<reader>_progress.log` next to their summary.
+* **Recording your time (consent):** the first time a reader starts a database, ORCA-MI asks what may be recorded,
+  as two separate ticks (both off until ticked): *the time of day* when they start and save a study (otherwise only
+  the date) and *the time spent* on each study (otherwise left empty). The answer is kept in
+  `_segmentations/consent_<reader>.json` and asked once; *⏱ … change* in the panel asks again. Results saved before
+  this question keep their times. Scripts: `segdbconsent day=0|1 spent=0|1`.
+* **All readers together:** `_segmentations/summary_all_readers.csv` (one row per study and reader, nnU-Net readers
+  included; same columns as the reader's own summary) is rewritten at every save. **Tools → 📊 Segment a database
+  results (all readers)…** asks for a database folder, writes it and opens it (e.g. in Excel). Script:
+  `segdbsummary <folder>`.
 * Example script: `examples/05_segment_and_score_database.py` builds a segmentation and a scoring database from
   your files (or a synthetic demo), writes the shared set-up and starts a junior, a senior and an nnU-Net session.
 * The panel at the top of the Segment tab shows the progress, the labels (click one to paint with it),
