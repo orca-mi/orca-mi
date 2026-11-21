@@ -1153,6 +1153,11 @@ and used from there afterwards, also offline. The folder in use is shown under t
 nnInteractive, starts again by itself and offers to restore the session (autosaved just before nnInteractive
 started).
 
+**✖ Cancel:** the progress banner of nnInteractive (loading, preparing the image, segmenting) has a **✖ Cancel**
+button: it stops nnInteractive at once (its Python process; the CPU / GPU is free again), e.g. on a slow computer with
+a big image. The segmentation keeps what it had before that step; nnInteractive starts again when you use one of its
+tools. Script: `nncancel`.
+
 **Segment on:** the image nnInteractive looks at: *the image I click on* (default) or a chosen image (listed: the
 images shown on the views, grouped by study (date) and then series). You can
 click on the views of any image (e.g. click on the CT while nnInteractive segments the PET); the result goes into the

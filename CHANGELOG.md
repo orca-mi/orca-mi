@@ -15,6 +15,7 @@
 * nnInteractive *Segment on* (Segment tab and AI toolbar group): lists only the images shown on the views, grouped by study and then series.
 * The segmentation opacity slider is on every view that shows a segmentation (also another image's); right-click it for **outline / filled in this view**.
 * Image list: a long segmentation name continues on the next line instead of widening the panel (the panel can be made narrow again).
+* nnInteractive: **✖ Cancel** on its progress banner stops a long step (or the loading) at once and frees the CPU / GPU.
 
 ## 0.1.6 — 2026-11-20
 
