@@ -463,8 +463,13 @@ left, ‹ on the right) on its edge: move the mouse onto it and the panel slides
 inside it (or a menu opened from it is open) and slides away 1.5 s after the mouse leaves. By default the images make
 room for the panel; the button next to the pin switches between **◫ push** and **▣ over** (slide over the images,
 so the views keep their size); the same choice is the *slide over the images* tick next to the auto-hide tick. A panel or tab in its own window is never auto-hidden. The panels slide in and out
-more slowly with *Animations* set to *Fancy* (Settings → Appearance) than with *Subtle*. Script:
-`autohide left|right on|off|over|push`.
+more slowly with *Animations* set to *Fancy* (Settings → Appearance) than with *Subtle*.
+**Mini strip:** the third button, **▥ mini** (tool panel) / **▤ mini** (image list), leaves a narrow strip with
+content instead of the thin edge while the panel is hidden: the tool panel shows every tab as a small icon with its
+name (the open tab highlighted, tabs with work running outlined), the image list one small card per study (date,
+modalities and number of images, study name; the study of the active image highlighted). Click a tab or a study to
+open the panel there; keep the mouse on the strip for a moment and the panel opens by itself. Also a tick next to
+*slide over the images*. Script: `autohide left|right on|off|over|push [mini=0|1]`.
 
 **Pop-out windows.** Every tab (Segment, Registration, AI models, Scoring, Dosimetry, Train AI, Batch …) can open
 in its own window (like the NEMA IEC tool), for example to keep it open on a second screen: **⧉ Pop out** in the
@@ -2862,6 +2867,10 @@ database/
   base=segmented|view3d=functional|cmapf=Hot iron|cmapa=Grayscale`.
 * **Tools:** every tool of the Segment tab works while segmenting a database (brushes, thresholds, region growing,
   morphology, nnInteractive …); the database panel sits on top of the tab.
+* **👍 Good as it is — approve & next** (only when the studies start from a segmentation: another reader's, a
+  file's or an nnU-Net model's): the segmentation you started from is right; it is saved as it is, marked *approved*
+  (`"approved": true` in `<user>.json`, column *approved* = yes in the summary CSV), and the next study opens. Script:
+  `segdbapprove`.
 * **✔ Normal scan — save empty & next:** nothing to segment in this study: an empty segmentation is saved, marked
   *normal* (`"normal": true` in `<user>.json`, column *normal* = yes in the summary CSV), and the next study opens. If
   something is already drawn, ORCA-MI asks before clearing it.

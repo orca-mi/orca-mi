@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.7 — 2026-11-21
+
+* Auto-hidden panels: a new **mini** button next to the pin and push / over. While hidden, the tool panel leaves a narrow strip with every tab's icon and name, the image list a narrow strip with one small card per study (date, modalities, name). Click a tab or a study to open the panel there; keep the mouse on the strip to open it.
+* Segment a database: **👍 Good as it is — approve & next** when the studies start from a segmentation (another reader's, a file's or an nnU-Net model's): it is saved unchanged, marked approved (column *approved* in the summary CSV), and the next study opens.
+
 ## 0.1.6 — 2026-11-20
 
 * Segment a database and Score a database: a **"Set it up yourself"** shortcut next to the readers' and the everyone shortcuts. It opens the set-up window with the database folder already chosen (as Tools → Segment / Score a database), where anyone sets their own name and options. Always written in the database folder; a tick puts it on the Desktop too.
