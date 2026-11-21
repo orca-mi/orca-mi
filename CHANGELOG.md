@@ -4,7 +4,7 @@
 
 * Auto-hidden panels: a new **mini** button next to the pin and push / over. While hidden, the tool panel leaves a narrow strip with every tab's icon and name, the image list a narrow strip with one small card per study (date, modalities, name). Click a tab or a study to open the panel there; keep the mouse on the strip to open it.
 * Segment a database: **👍 Good as it is — approve & next** when the studies start from a segmentation (another reader's, a file's or an nnU-Net model's): it is saved unchanged, marked approved (column *approved* in the summary CSV), and the next study opens.
-* Segment a database: **summary of all readers** (`_segmentations/summary_all_readers.csv`, updated at every save; Tools → 📊 Segment a database results opens it), and each reader is asked once whether the **time of day** and the **time spent** may be recorded (two separate choices; otherwise only the date / no duration).
+* Segment a database: **summary of all readers** (`_segmentations/summary_all_readers.csv`, updated at every save); **Tools → 📊 Segment a database results** shows every reader's time spent, time of day, normal / approved cases and scores (means and the distribution of each score) as tables and charts in the Results tab, which can be saved as JPEG / PNG, Excel and CSV, and each reader is asked once whether the **time of day** and the **time spent** may be recorded (two separate choices; otherwise only the date / no duration).
 * AI group of the toolbar: choose the image nnInteractive segments (*the image I click on* or a loaded image) and **✔ Next** (next object), without opening the Segment tab. The *⚡ Speed up* options (AI tab, nnInteractive) are now a foldable section.
 
 ## 0.1.6 — 2026-11-20

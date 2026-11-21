@@ -2915,9 +2915,16 @@ database/
   `_segmentations/consent_<reader>.json` and asked once; *⏱ … change* in the panel asks again. Results saved before
   this question keep their times. Scripts: `segdbconsent day=0|1 spent=0|1`.
 * **All readers together:** `_segmentations/summary_all_readers.csv` (one row per study and reader, nnU-Net readers
-  included; same columns as the reader's own summary) is rewritten at every save. **Tools → 📊 Segment a database
-  results (all readers)…** asks for a database folder, writes it and opens it (e.g. in Excel). Script:
-  `segdbsummary <folder>`.
+  included; same columns as the reader's own summary) is rewritten at every save. Script: `segdbsummary <folder>`.
+* **Tools → 📊 Segment a database results (all readers)…** asks for a database folder and shows its results at the
+  top of the **Results** tab: a table per reader (studies, normal, approved as it is, time spent mean / median /
+  total, mean start time, the mean of each score) with an *All readers* row, and charts: time spent per study and
+  time of day per reader (box plots with the mean), normal / approved / edited studies per reader, and for each
+  score question how often each score was given (stacked bars coloured from the worst to the best score, the mean
+  above each bar). Times are used only where each reader allowed them. **💾 Save charts and tables…** writes JPEG,
+  PNG and SVG charts, CSV tables, an Excel workbook and an HTML page into a new sub-folder of the folder you choose;
+  🔄 Refresh reads the database again; 📄 opens the table of every study. Scripts: `segdbresults <folder>`,
+  `segdbresultsave <folder>`.
 * Example script: `examples/05_segment_and_score_database.py` builds a segmentation and a scoring database from
   your files (or a synthetic demo), writes the shared set-up and starts a junior, a senior and an nnU-Net session.
 * The panel at the top of the Segment tab shows the progress, the labels (click one to paint with it),
