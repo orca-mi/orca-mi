@@ -2899,7 +2899,9 @@ database/
   *0000 CT*, *0001 PET*) choose the study image by name (a list of the file names found, with the number of studies)
   or type a part of the name; *auto* matches the channel name. Saved in the database set-up for every observer.
 * **Score each study too:** the criteria (from the Scores tab template, or from the database set-up) are shown
-  under the labels and saved with the segmentation; required ones (*) must be answered before *Save & next*.
+  under the labels and saved with the segmentation; required ones (*) must be answered before *Save & next*. A
+  reader who starts **from scratch** gets no questions (there is no starting segmentation to judge); the comments
+  box stays.
 * **⏸ Pause** (optional, ticked when you define the database: *Pause: show a Pause button to the readers*; for both
   *Segment a database* and *Score a database*): the reader's panel gets **⏸ Pause**; while paused a banner shows
   in the middle of the window and the clock stops, **▶ Resume** goes on. The paused time is never counted in the
@@ -2909,6 +2911,21 @@ database/
   cores, GPU, time zone, screen). `progress_<user>.log` gets a tqdm-like line per study:
   `time | [  12/120] 10.0% |██░░…| study | this 03:12 | mean 02:50/item | ETA 5:06:00`. Reading sessions (scoring)
   save the same information and a `<title>_<reader>_progress.log` next to their summary.
+* **New database from the patient database (no folder to prepare, no code):** Tools → 🏥 *New segmentation database
+  from the patient database…* (or the 🏥 link at the top of the Segment a database window). (1) Choose the images of
+  each case by modality (e.g. Image 1 = PT, Image 2 = CT; up to 4) and the one the readers segment on. (2) The studies
+  of the patient database that have all of them are listed (search by name, ID, date, description; tick the ones to
+  use); where a study has several series of a modality (e.g. three CTs) choose the series in that row (⚠ *choose*):
+  such a study is left out until chosen. (3) Choose a new folder and a title; *case folders without patient names*
+  (case_001 …) keeps names out of the folder; *PET in SUV* (body weight) when the dose is in the header. **▶ Create the
+  database** writes `<folder>/<case>/image-<k>-<name>.nii.gz` in the background, and `<folder>_cases.csv` NEXT TO the
+  folder (case ↔ patient ID, name, date, series UIDs; keep it private). Then the Segment a database window opens on
+  the folder for everything else: labels, score questions, readers and where each one starts, nnU-Net readers,
+  views, pause and shortcuts. Script: `pacssegdb mods=PT,CT|target=<folder>|title=…|filter=…|first=1|create=1`.
+* **Where each reader starts:** the readers table of the set-up has a *Starts from* column (as set above, from
+  scratch, from another reader, from an nnU-Net reader); each reader's shortcut starts there. The *Everyone* shortcut's
+  "who is segmenting?" window has a **Start from** choice too (default: the chosen reader's own start); script
+  `segpick <name>|from=empty|observer:<name>|nnunet:<reader>`.
 * **Recording your time (consent):** the first time a reader starts a database, ORCA-MI asks what may be recorded,
   as two separate ticks (both off until ticked): *the time of day* when they start and save a study (otherwise only
   the date) and *the time spent* on each study (otherwise left empty). The answer is kept in
