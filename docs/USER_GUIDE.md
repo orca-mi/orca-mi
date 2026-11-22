@@ -507,6 +507,8 @@ Dropping a file (from Explorer) or a thumbnail onto a viewport asks how to use i
 over is the one chosen in the dialog (while dragging from Explorer it is outlined, *Drop into view N*); you can still
 change it there.
 
+* **On a 3D view nothing is asked:** an image dropped there is shown in that 3D view only, in every layout (Shift =
+  fusion and Ctrl = segmentation still work; files named as segmentations and several files at once still ask).
 * **Image**: shown in that viewport, with a colormap of your choice (or the modality default).
 * **Fusion overlay**: fused with colormap and opacity. **Target:** *All views (keep the layout)* (default: fused on
   every view of the current layout, e.g. all MPR planes, without changing the layout or the images) or one chosen view.
@@ -541,8 +543,10 @@ in the Segment tab (🎨 Recolor labels).
 
 Layout *Two MPRs side by side*: two images, each with axial, sagittal, coronal and 3D. Right-click an image →
 **✚✚ Two MPRs side by side** → *Show in the left / right MPR* (switches to the layout) or *Fuse on the left / right
-MPR*. A thumbnail dropped on any view of one MPR goes to all four of its views (as the image, or with Shift / the
-fusion role as a fusion overlay on that MPR only); the other MPR stays as it is.
+MPR*. A thumbnail dropped on a slice view of one MPR goes to all four of its views (as the image, or with Shift / the
+fusion role as a fusion overlay on that MPR only); the other MPR stays as it is. An image dropped on the MPR's **3D
+view** changes only that view: e.g. CT with the PET fused on axial, sagittal and coronal, and the PET alone in 3D (show
+the CT and fuse the PET first, then drag the PET onto the 3D view).
 
 ### 🖼 Hanging protocols
 
@@ -587,6 +591,11 @@ the Python API. Script / Python: `hanging`, `hanging PET/CT`, `hanging auto=0`, 
   128 / 256 voxels, no shading) for slow computers or laptops on battery; *Balanced* (the default: 1×, 256 / 512,
   shading); *High* (2×, 384 / 1024, shading) for a good GPU (≥ 6 GB). Moving a slider gives *custom*. Script:
   `quality3d low|balanced|high`.
+* **Own window in 3D:** 3D tab → *Transfer function* → untick **Use image window**. The 3D view then has its own window
+  for each image, starting from the image's: right-drag on the 3D view, its colour bar (drag, right-click presets) and
+  the keys 0–9 with the 3D view active change only the 3D view; the slices and the fusions keep theirs (e.g. PET bright
+  in 3D, softer in the fusion). The Image tab always sets the image's window. Tick it again to share one window.
+  Script: `window3d image|own|<lo>,<hi>`.
 * **Several 3D views:** 3D tab → *Several images in 3D*: tick 2–4 images → *Show in 3D side by side* (MIP, DVR …).
   🔗 links rotation and zoom of all 3D views.
 * **3D editing** (second toolbar row of a 3D view showing a segmentation — its own or another image's, e.g. after a registration): **✂ Remove object** deletes the

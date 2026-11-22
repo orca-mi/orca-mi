@@ -8,6 +8,8 @@
 * Tool panel tables (e.g. Dosimetry → SIRT): the names on the left are shown in full instead of a few letters, and drop-downs use the width of the panel.
 * Tool panel: a row that continues on the next line no longer overlaps the row below (e.g. the nuclide in single time point dosimetry), and a wide row no longer pushes the following sections past the panel's edge.
 * Segment tab: the segmentation name box grows with the panel.
+* 3D view: untick **Use image window** (3D view tab → Transfer function) for a window of its own: right-drag, colour bar, presets and keys on the 3D view then leave the slices and fusions as they are.
+* **Drag an image onto a 3D view**: it is shown in that view only, without asking for its role. In *Two MPRs side by side* the three slice views of that MPR keep theirs (e.g. CT with fused PET, and the PET in 3D).
 
 ## 0.1.7 — 2026-11-21
 
