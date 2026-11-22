@@ -429,9 +429,10 @@ without the text.) Script / Python: `viewtext corner=20|orient=30|topright=1|trs
 ### ◐ Window / level menu
 
 The toolbar's **W/L** menu (Display group), a **right-click on the W/L mouse tool** (◐ in the Navigate group) and the
-image's right-click menu (*◐ Window / level*) list the same choices as the Image tab's *Window / level* section:
+image's right-click menu (*◐ Window / level*) and a **right-click on a colorbar** of any view (for that bar's own image,
+e.g. the fused PET) list the same choices as the Image tab's *Window / level* section:
 **✨ Smart** (key **0**), **Full range**, **1–99 %**, and the presets of the image (CT: soft tissue, lung, bone,
-brain, liver, mediastinum, stroke, angio; PET in SUV: 0–5 … 0–15, full range, 0–50 % max), each with its centre /
+brain, liver, mediastinum, stroke, angio, abdomen (C 50 / W 400); PET in SUV: 0–5 … 0–15, full range, 0–50 % max), each with its centre /
 width and its key (**1–9**), with the image's current C / W at the top. The keys work on the active view.
 
 **PET and NM images** have the same number keys on every image: **0** smart window, **1** full range, **2** 0–50 % of
@@ -637,7 +638,8 @@ Colormap → Colorbar on the views*, *Fusion overlay → Overlay colorbar*, or r
 
 **Using the colorbar with the mouse** (as in the cardiac splash view): **drag the top half** of a colorbar up or down
 to change the window's maximum, **drag the bottom half** to change the minimum (the grip you hold is highlighted),
-and **click** the bar to choose the image's colours. With a fused image there are two bars: each changes its own
+**click** the bar to choose the image's colours, and **right-click** it for the windows predefined for the image's
+modality (see *Window / level menu*) and its colours. With a fused image there are two bars: each changes its own
 image (the base image or the overlay). A hidden colorbar (see above) has none of this. Script (tests):
 `colorbars [view]` lists the bars with their window and colours.
 

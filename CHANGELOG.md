@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.8 — 2026-11-22
+
+* **Right-click a colour bar** on any view for the window presets of that image's modality (CT, PET / SPECT), and its colours.
+* CT: new **Abdomen** window (C 50 / W 400, key 9).
+* **Visible frames** around every text box, number box, drop-down, tick box and radio button, in every theme and surface style (e.g. the licence request form).
+* Tool panel tables (e.g. Dosimetry → SIRT): the names on the left are shown in full instead of a few letters, and drop-downs use the width of the panel.
+* Tool panel: a row that continues on the next line no longer overlaps the row below (e.g. the nuclide in single time point dosimetry), and a wide row no longer pushes the following sections past the panel's edge.
+* Segment tab: the segmentation name box grows with the panel.
+
 ## 0.1.7 — 2026-11-21
 
 * Auto-hidden panels: a new **mini** button next to the pin and push / over. While hidden, the tool panel leaves a narrow strip with every tab's icon and name, the image list a narrow strip with one small card per study (date, modalities, name). Click a tab or a study to open the panel there; keep the mouse on the strip to open it.
