@@ -4,13 +4,13 @@
 
 * **Batch → ☢ CT dose + scan range**: for each CT, the upper and lower anatomical boundary of the scan (from the organ and vertebrae maps, made first when missing), then CTDIvol, DLP, SSDE and an effective dose estimate for the whole scan and per body region (head, neck, chest, abdomen, pelvis, legs). One CSV row per CT.
 * The vertebrae model of TotalSegmentator can be downloaded from the Batch tab after accepting its licence (Apache-2.0).
-* **Lesion tracking**: two methods, *Conventional* (registration) and *Organ-guided* (anatomy: vertebrae and organs, no registration). Missing anatomy maps are segmented for you (CT; PET without CT: choose the tracer).
+* **Lesion tracking**: two methods, *Conventional* (registration) and *Organ-guided* (no registration): organs only (CT or FDG PET) or organs + vertebrae (CT). Choose the CT (or PET) of each time point and create the organ and vertebrae maps right in the tab. The report explains how each lesion was matched.
 * **Right-click on an image → Create body contour**: min / max suggested from the modality and the histogram, and *Remove the CT table* (ticked by default) keeps the table out of the contour.
 * **AI tab**: *Find a model* by kind (organs, lesions …) in a guide window, a basket of the chosen models, short model information on hover and right-click; adding your own models is in its own folded section.
 * **Simple mode** shows fewer sections at once: Image (window / level, fusion), Segment (segmentations, labels, manual tools); configuration, patient & study and lesion spill-out are folded.
 * Register tab: separate sections to align image centres, align on segmentations and align by picked points.
 * Dosimetry: *Convert image to dose*. CT dose tab: sections for exposure, size options, regional CTDIvol, curves and density map. Compare tab: own sections for the gamma map and the NPS.
-* **DICOM curation**: drag the folder-name tags left and right, a *Tracer* tag for PET / NM, and *Stop* stops at once.
+* **DICOM curation**: drag the folder-name tags left and right (✕ removes a tag), a *Tracer* tag for PET / NM, and *Stop* stops at once.
 * **Segment / score a database**: PDF or text documents of a case (physician report, disease description) shown to readers under *Additional information*, readable in a large window; on or off per reader.
 
 ## 0.1.8 — 2026-11-22

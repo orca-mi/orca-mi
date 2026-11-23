@@ -1941,11 +1941,17 @@ up to 9 follow-ups (**➕ Add follow-up**; ✖ next to a follow-up removes it).
 *Tracking* at the top chooses one of two methods:
 * **🎯 Conventional (registration)**: each follow-up registered onto the baseline (Register tab or a saved
   registration); lesions linked by distance.
-* **🦴 Organ-guided (anatomy)**: no registration. Each time point needs its vertebrae map and its 22-organ map;
-  maps already loaded (named after the models) are chosen by themselves. **If one is not available it is segmented
-  for you** (🧠 *Segment the anatomy now*): on the CT of the study (PET/CT) with the five low-dose CT organ models
-  and the vertebrae model (download it in *Batch → ☢ CT dose + scan range*); on a PET without CT choose the **tracer**
-  — FDG uses the three FDG PET organ models (no vertebrae on PET), other tracers need the CT. With one follow-up everything below is
+* **🦴 Organ-guided (anatomy)**: no registration. *Anatomy* chooses **🫁 Organs only (CT or PET)** or
+  **🫁🦴 Organs + vertebrae (CT)**. For the baseline and each follow-up choose its **anatomy image** (its CT, or the
+  PET itself for Organs only; *automatic* = the CT of the same study, else the image). Next to *organ map* and
+  *vertebrae map* **🧠 Create** makes the map right there (CT: the 5 low-dose CT organ models; PET: tracer FDG = the
+  3 FDG PET organ models, the same 22 organs; vertebrae: the TotalSegmentator vertebrae model on the CT —
+  **⬇ Download vertebrae model** shows its licence and downloads it). *Find lesions* also makes any missing map first
+  and matches the lesions when the maps are ready.
+* The report and the CSV have a **matching** table: for each lesion and pair of time points its organ / vertebra,
+  how its centre was carried to the next time point, the lesion it was linked to, the distance and the reason
+  (e.g. *B2, baseline: it lies in the Liver: its centre was placed at the same relative position inside the Liver box
+  of the next time point; F1 is 6.3 mm from that point, in the same organ → linked (confirmed).*). With one follow-up everything below is
 the same as in the original two-time-point tool (names, tables, CSV, report).
 
 1. Register **each follow-up onto the baseline** (Register tab: fixed = baseline, moving = follow-up; for PET/CT
