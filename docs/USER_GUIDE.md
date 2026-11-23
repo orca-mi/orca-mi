@@ -80,6 +80,7 @@ In the program: **Help → 📖 User guide** opens this guide; **Help → 🐞 R
     * [Density map](#density-map)
     * [📦 Batch tab: inputs by pattern, output names and folders](#-batch-tab-inputs-by-pattern-output-names-and-folders)
     * [💪 Arms position (batch)](#-arms-position-batch)
+    * [☢ CT dose + scan range (batch)](#-ct-dose--scan-range-batch)
 * [5c. Cardiac: short axis, 17 segments, bull's-eye](#5c-cardiac-short-axis-17-segments-bulls-eye)
 * [5d. Image comparison: errors, gamma index, noise power spectrum](#5d-image-comparison-errors-gamma-index-noise-power-spectrum)
 * [5e. Lesion tracking: RECIST, PERCIST, TMTV](#5e-lesion-tracking-recist-percist-tmtv)
@@ -212,6 +213,13 @@ Check an environment from the AI tab with **Environment check**.
 
 The switch at the right of the menus (🙂 Simple / 🛠 Expert) changes how much each tab of the tool panel shows; it
 changes no image, setting or result, and can be clicked at any time.
+
+Shown at once in Simple mode (0.1.9): Image tab — window / level and fusion overlay; Segment tab — segmentations,
+labels and manual tools; Register tab — ⊕ align image centers, ◎ align based on segmentations, 📍 align by pick
+points, manual and automatic registration; AI tab — models, inputs, run (Configuration folded); Dosimetry — ☢
+Convert image to dose and DVH (spill-out correction folded); CT dose — 📟 Exposure (DICOM headers), curves, export,
+arms position (size options, regional CTDIvol and density map folded); Compare — images, voxel-wise, save (gamma and
+NPS folded); Info — nickname (patient & study folded).
 
 * **🙂 Simple** (new installations start in it): every tab is there, in the same order, but each shows only its basic
   options (e.g. Image: window / level, colormap, fusion, PET / SPECT units, display). The other sections are the
@@ -1265,6 +1273,12 @@ Script / Python: `dualthr a=0|b=1|alo=2.5|ahi=100|blo=0|bhi=200|op=and|name=PET 
 
 ### 🧍 Body contour
 
+**Right-click on any image → 🧍 Create body contour** does the same from the view: *Min* / *Max* are suggested from
+the modality and the histogram (CT: the valley between air and soft tissue, metal above 2000 HU; PET, SPECT, MR:
+Otsu's threshold between background and body), *Remove the CT table* (ticked) keeps the table out of the contour with
+the patient-body mask of the 3D view (*Remove CT table*), and the other settings are folded under ⚙ Settings. The
+same tick and **✨ Suggest thresholds** are in the Segment tab section.
+
 Segment tab → **Body contour → 🧍 Create body contour**: the patient's outline on a CT, by Yazdan Salimi's
 `yazdan.image.body_segment`:
 1. threshold −300 … 2000 HU (the upper limit drops metal),
@@ -1725,6 +1739,33 @@ MOOSE rule gave the same result as the Python function in 218/218 but disagreed 
 
 Script: `armsfile <path>` (one scan), `arms` (active image), `armsbatch <CT>;<CT>…|csv=<file>|gen=1|moose=<folder>`.
 
+### ☢ CT dose + scan range (batch)
+
+Batch tab → *Task* **☢ CT dose + scan range**: add CT files or DICOM folders (DICOM keeps the tube current and
+CTDIvol of every slice) and run. One CSV row per CT:
+
+* **Scan range**: the upper and lower anatomical boundary (`upper_scan_boundary`, `lower_scan_boundary`: e.g.
+  *vertebrae_C3* → *25--mm--of--femurs*, *all the way up*, *eyes partial*), highest / lowest vertebra and whether it is
+  cut, missing vertebrae between them (a label error of the model), brain / eyes / vertebrae / legs in the scan. The
+  rules are those of `yazdan.image.scan_range_detector`, corrected: slices ordered head-feet whatever the image
+  direction, the bottom slice counts as cut like the top one, and legs-only scans or scans ending below the sacrum
+  without femoral heads give a result (they stopped with an error before).
+* **Dose**: CTDIvol per slice (DICOM, or the CTDIvol you type × slice tube current / mean tube current), DLP, SSDE
+  (body contour + water-equivalent diameter, 32 / 16 cm phantom) and the water-equivalent diameter, for the whole scan
+  and per **body region**: head (above C1), neck (C1–C7), chest (T1–T12), abdomen (L1–L5), pelvis (sacrum to the
+  bottom of the hips), legs. Effective dose estimate = Σ regional DLP × AAPM Report 96 adult k-factors (head 0.0021,
+  neck 0.0059, chest 0.014, abdomen and pelvis 0.015 mSv/mGy·cm; legs not counted).
+* **Segmentations used** (made first when missing, with *Generate…* ticked): `<name>--uldct2mm--yzdnn.nii.gz` (22
+  organs: the five low-dose CT models *uldct_set_1_2mm … uldct_set_5_2mm* combined) and `<name>--VerSegBasel--yzdnn.nii.gz`
+  (vertebrae: sacrum, S1, L5 … C1). *⬇ Download (TotalSegmentator)* fetches the TotalSegmentator vertebrae model
+  (task 292, about 250 MB) after you have read and accepted its licence (Apache-2.0; cite Wasserthal et al., Radiology:
+  AI 2023). Another vertebrae model with the same labels can be chosen instead.
+* Output: the CSV (rows appended), the segmentations next to each CT or in a folder, optionally one CSV per CT.
+
+Script: `ctbatch <CT>;<CT>…|csv=<file>|segdir=<folder>|ctdi=<mGy>|gen=1|uldct=<folder>|vert=<folder>|phantom=32|perfile=1`,
+`ctbatch` alone (models found), `ctbatch licence=1|download=1` (download after accepting the licence), `ctscanrange <CT>|segdir=`
+(one CT now: `[ctbatchhead]`, `[ctbatchrow]`).
+
 ## 5c. Cardiac: short axis, 17 segments, bull's-eye
 
 Right panel → **🫀 Cardiac**. Works on PET, SPECT, CT or MR. The tab has three sections:
@@ -1895,7 +1936,16 @@ Script: `compare ref=0|eval=1|mask=0:1:1|regions=0:0|clip=0,1e9`, `comparemaps p
 ## 5e. Lesion tracking: RECIST, PERCIST, TMTV
 
 Right panel → **🎯 Lesion tracking** follows the lesions of a patient over up to **10 time points**: a baseline and
-up to 9 follow-ups (**➕ Add follow-up**; ✖ next to a follow-up removes it). With one follow-up everything below is
+up to 9 follow-ups (**➕ Add follow-up**; ✖ next to a follow-up removes it).
+
+*Tracking* at the top chooses one of two methods:
+* **🎯 Conventional (registration)**: each follow-up registered onto the baseline (Register tab or a saved
+  registration); lesions linked by distance.
+* **🦴 Organ-guided (anatomy)**: no registration. Each time point needs its vertebrae map and its 22-organ map;
+  maps already loaded (named after the models) are chosen by themselves. **If one is not available it is segmented
+  for you** (🧠 *Segment the anatomy now*): on the CT of the study (PET/CT) with the five low-dose CT organ models
+  and the vertebrae model (download it in *Batch → ☢ CT dose + scan range*); on a PET without CT choose the **tracer**
+  — FDG uses the three FDG PET organ models (no vertebrae on PET), other tracers need the CT. With one follow-up everything below is
 the same as in the original two-time-point tool (names, tables, CSV, report).
 
 1. Register **each follow-up onto the baseline** (Register tab: fixed = baseline, moving = follow-up; for PET/CT
@@ -1961,6 +2011,14 @@ TLG, SLD, nadir, RECIST, PERCIST), the lesions of each time point, and curves ov
 number of lesions, SLD).
 
 **🆕 New and disappeared lesions** (under the lesion table, for every pair of time points — baseline → FU1, FU1 → FU2 …): the lesions **new** at the later time point (no link from the earlier one) and those that **disappeared** (seen at the earlier time point, no link to the later one) are listed as chips; click one to show it, right-click to **✔ confirm** it (new lesion / disappeared, treated). *Mark as new at …* / *Mark as disappeared at …* mark any lesion, also a linked one: its link between these two time points is removed and it is not suggested again (the approval of the linking is withdrawn, approve again). So a lesion can appear at FU2 and disappear at FU3. Script: `lesionmark new|gone <pair> <lesion> [off]` (pair 0 = baseline → FU1; lesion = 0-based index at the later (new) or earlier (gone) time point).
+
+**🦴 Organ-guided tracking** (Tracking at the top of the tab): the links are suggested from the anatomy of each time point,
+not from a registration. Load the vertebrae map (`<CT>--VerSegBasel--yzdnn.nii.gz`) and / or the 22-organ map
+(`<CT>--uldct2mm--yzdnn.nii.gz`; *Batch → ☢ CT dose + scan range* makes both) as segmentations of each time point's CT
+and choose them as *vertebrae map* / *organ map*. A lesion in a vertebra moves with that vertebra, a lesion in an organ
+keeps its relative place inside the organ, anything else (lymph nodes, soft tissue) moves with the vertebrae above and
+below it; lesions in different organs get 10 mm added to their distance. Script: `anatomy=1|bvert=<i>:<s>|borg=<i>:<s>|fvert=…|forg=…`
+(`fvert2=` … for more follow-ups); it prints `[lesionanat] pair=1|B1|inside Liver` lines.
 
 Script: `lesiontrack base=0|bmask=0:0:0|fu=1|fmask=1:0:0|bliver=…|fliver=…|tf=<saved k>|dist=25|minml=0.1`
 (prints `[suggest] B1|F2|mm`); more follow-ups with `fu2=2|fmask2=2:0:0|tf2=…` up to `fu9`, `n=<time points>` keeps the
@@ -2323,6 +2381,12 @@ Python: `v.command("python C:/path/to/python.exe")`, `v.command("nndevice cpu")`
 
 ### AI models: folders, several models at once, progress
 
+**🧭 Find a model:** one button per kind of model (organs, lesions …) opens a window that lists its tasks and models
+with a short description; **🧺 Add** puts a model into the **basket** shown in the AI tab (click a basket chip to
+take it out), then run them. Hover over a model (or right-click it) for its short information. Your own models
+(**➕ nnU-Net, ➕ image→image, ➕ command**, duplicate, delete) are in the folded section **🛠 Adding your own models**
+(Simple and Expert mode).
+
 The AI tab lists the models as the author's folders (category → task → models); *only models on this PC* hides
 those not downloaded. Tick several models (or *tick all* of a task, e.g. the five low-dose CT sets) and press
 **▶ Run the ticked models on the active image**: they run one after the other, a model already run on the image is
@@ -2512,6 +2576,11 @@ with other names add e.g. `|pattern=series:6,acquisition_date:0,sex:1|sep=_` (fi
 times are written without the fraction of seconds, e.g. `081502`).
 
 ### 🗃 Curate a DICOM database
+
+Folder names: **drag a tag chip left or right** (or onto another level, or onto a level's name) to change the order;
+a click on a chip removes it. **Tracer** (+ tag) is the radiopharmaceutical of PET / NM files (from the
+Radiopharmaceutical Information Sequence). **Stop** stops at once, also while the headers are being read (then nothing
+is copied or moved).
 
 The **Curate** tab of *Tools → 🗂 DICOM curation & conversion…* organizes and converts data exported
 from PACS (e.g. syngo.via): every file is read (header only, in parallel) and put into folders built from its DICOM
@@ -2765,6 +2834,12 @@ Tools → *Open reading session…*, or `ORCA-MI.exe --session=file.json`), scor
   reader), output, order and blinding, then save JSON or CSV.
 
 ### Scoring a database (patients × configurations)
+
+**📄 Case documents** (Score and Segment a database): a PDF or text file in a case folder (a physician report, a
+description of the disease) is shown to the reader under **📄 Additional information** next to the images, in a box
+(first page of a PDF); **⛶** reads it in a large window, **↗** opens it in its own program. In the set-up window
+*📄 Add a document… → Choose…* copies a file into a case folder, and the **Docs** tick of each reader shows or hides
+the documents for that reader.
 
 Tools → **📋 Score a database…** for a folder laid out as:
 
