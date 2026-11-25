@@ -1766,6 +1766,24 @@ Script: `ctbatch <CT>;<CT>…|csv=<file>|segdir=<folder>|ctdi=<mGy>|gen=1|uldct=
 `ctbatch` alone (models found), `ctbatch licence=1|download=1` (download after accepting the licence), `ctscanrange <CT>|segdir=`
 (one CT now: `[ctbatchhead]`, `[ctbatchrow]`).
 
+### Diagnostic reference levels (DRL) of a patient database (0.2.0)
+
+The CT dose batch also gives, for every scan: its DICOM tags (protocol, study description, scanner, patient sex, age,
+weight, height …), the **arm position**, the **NCICT phantom and scan range** and, when the study folder also holds a
+PET or SPECT series, the **injected activity × the ICRP 128 adult coefficient** (mSv/MBq) and the total effective dose.
+
+- **Organ models:** 2 mm (LowDose-fivesets-LR) or 3, 4, 5, 6 mm (lowdose-fivesets-ULR, faster). One fold, step 0.5, no
+  mirroring.
+- **Group by:** any columns of the CSV (e.g. `protocol, arm_position, model`). At the end ORCA-MI writes
+  `<csv>_DRL_summary.csv`: number of scans, median, first and third quartile per group. **The third quartile is the
+  DRL.** *Σ Recompute the DRL summary* regroups the whole CSV.
+- **NCICT:** ORCA-MI finds NCICT.exe (usually in the NCICT folder of Program Files (x86); choose it if it is elsewhere or after an
+  update) and writes `<csv>_ncict_input.csv` in NCICT's batch format. The phantom is the one of the patient's sex
+  closest in height and weight, and the scan start / end come from the scan range. Load the file in NCICT to compute
+  the organ doses. **NCICT is not part of ORCA-MI: every user needs their own NCICT licence.**
+- **ICRP 128:** the table of coefficients is the file `icrp128_adult.csv` in the ORCA-MI settings folder
+  (*📄 ICRP 128 coefficients*). Check the values against ICRP Publication 128 and add your own radiopharmaceuticals.
+
 ## 5c. Cardiac: short axis, 17 segments, bull's-eye
 
 Right panel → **🫀 Cardiac**. Works on PET, SPECT, CT or MR. The tab has three sections:
@@ -2069,6 +2087,13 @@ PERCIST rules applied) are listed in the information. Box plots: box Q1–Q3, li
 Script: `report lesions|stats|compare|segcompare|folder=<dir>|name=<name>|csv=1|xlsx=1|png=1|svg=1|html=1|json=1|log=1|anon=0|measures=volume,max,mean`.
 
 ## 6. AI: segmentation, enhancement, training
+
+> **0.2.0:** the nnU-Net speed (Ultra fast, Fast, Balanced, Accurate) is also in the **Run** section, so the
+> Configuration section can stay closed. On a GPU, the result is resized to the image on the GPU (the same labels as
+> nnU-Net's own export, about three times faster for a batch). In *🧭 Find a model*, **⬇ download** downloads the model
+> at once, and the basket offers *⬇ Download the missing models*. Segmentations of known models (uldct sets 1–5 at
+> 2–6 mm, the combined organ map, the FDG organ sets, the vertebrae map) get their organ names when loaded (Settings);
+> new labels take the next colour of a 150-colour list (label menu ⋯ → *Suggest a new colour*).
 
 ### Installing on a new PC (no Python)
 
@@ -2582,6 +2607,32 @@ with other names add e.g. `|pattern=series:6,acquisition_date:0,sex:1|sep=_` (fi
 times are written without the fraction of seconds, e.g. `081502`).
 
 ### 🗃 Curate a DICOM database
+
+**Start**: *Organize first* (default) reads every header, shows the folders, then copies / moves and converts.
+*Start immediately* works patient folder by patient folder: each one is read, copied / moved and converted to NIfTI at
+once while the next folders are read; a series spread over several folders is converted again with all its files.
+Same folder names and tables either way; faster for large or slow sources (network, PACS exports). The progress bar
+shows the step, the percentage and the time left, and under it what is being done now (organizing the folders,
+writing NIfTI of a folder, RT structures, the tables). With *Start immediately* there are two bars: the folders
+read, organized and copied (with the current folder and its step), and the conversion to NIfTI running at the same
+time (folders converted of those queued so far). Script: `curatewindow <folder>|out=<folder>|start` presses Start.
+
+**PET SUV** (*Write NIfTI*, setting *pet_suv*): `<name>--SUV.nii.gz` uses the scanner's own factor when the files have
+one — an image already in SUV (Units GML) is written as it is, a Philips SUV scale factor (7053,1000) multiplies the
+image — otherwise SUV = value × weight / injected dose decayed to the scan, from the DICOM header. The log says which
+(`SUV: …`). **Stop** ends the curation at once, also in the middle of a folder being converted.
+
+**Tables of the curation** (in the output folder; with *keep the folders* in the first input folder):
+* `curation_decode.csv` — one row per DICOM file: old address, new address, its new folder, patient name / ID, birth
+  date, sex, study date and description, accession number, modality, series, tracer, study / series UIDs;
+* `curation_summary.xlsx` — one workbook for all the images: **Patients** (number of studies and of study dates,
+  first / last date, follow-up in days, modalities with their number of series, tracers, series, files, NIfTI
+  files), **Studies** and **Series** (old and new folder, NIfTI files of each series); the same as
+  `curation_patients.csv`, `curation_studies.csv`, `curation_series.csv`.
+
+**RT structure sets** are converted with the images: each RTSTRUCT is drawn onto the grid of the image it refers to
+(the NIfTI of that series, so both match voxel by voxel) and saved in its folder as `<folder>.nii.gz` (one label per
+ROI) with `<folder>_labels.csv` (value, ROI name).
 
 Folder names: **drag a tag chip left or right** (or onto another level, or onto a level's name) to change the order;
 a click on a chip removes it. **Tracer** (+ tag) is the radiopharmaceutical of PET / NM files (from the

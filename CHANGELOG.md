@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.2.0 — 2026-11-25
+
+* **Diagnostic reference levels (DRL)** in Batch → ☢ CT dose + scan range: for every scan its DICOM tags (protocol, scanner, patient sex, age, weight, height …), the arm position, the NCICT phantom and scan range, and for PET / SPECT the injected activity × the ICRP 128 adult coefficient. A DRL summary grouped by any columns (median, quartiles; the third quartile is the DRL). Organ models of 2 mm or 3–6 mm (faster).
+* **NCICT**: ORCA-MI finds NCICT on the PC (or you choose it) and writes its batch input (phantom matched to sex, height and weight; scan start / end from the scan range). NCICT is not part of ORCA-MI: every user needs their own NCICT licence.
+* **nnU-Net about 3× faster on a GPU** for many images: the result is resized to the image on the GPU (the same labels as before). Database runs prepare their inputs in parallel.
+* **AI tab**: the speed (Ultra fast, Fast, Balanced, Accurate) is also in the Run section; *⬇ download* in *Find a model* downloads the model at once, and the basket downloads the missing models.
+* **Q.SPECT**: scanner > reconstruction > isotope > energy window (photopeak, e.g. Lu-177 113 and 208 keV) > CF. A scanner can have its serial number; an image of that scanner selects it, and an unknown scanner can be added from the image's DICOM tags.
+* Segmentations of known models (low-dose CT organ sets 1–5 at 2–6 mm, the combined organ map, FDG organ sets, vertebrae) get their organ names when loaded.
+* **150 label colours**: new labels take the next unused colour; label menu ⋯ → *Suggest a new colour*.
+* **New look**: the *Silk* style (calm grey canvas, white cards, pill buttons, soft shadows) and the *Vivid* colours are the default; five new light themes; the theme lists can show only light or only dark themes.
+* Batch tab: everything fits the panel (rows wrap, no text cut off).
+
 ## 0.1.9 — 2026-11-23
 
 * **Batch → ☢ CT dose + scan range**: for each CT, the upper and lower anatomical boundary of the scan (from the organ and vertebrae maps, made first when missing), then CTDIvol, DLP, SSDE and an effective dose estimate for the whole scan and per body region (head, neck, chest, abdomen, pelvis, legs). One CSV row per CT.
@@ -10,7 +22,9 @@
 * **Simple mode** shows fewer sections at once: Image (window / level, fusion), Segment (segmentations, labels, manual tools); configuration, patient & study and lesion spill-out are folded.
 * Register tab: separate sections to align image centres, align on segmentations and align by picked points.
 * Dosimetry: *Convert image to dose*. CT dose tab: sections for exposure, size options, regional CTDIvol, curves and density map. Compare tab: own sections for the gamma map and the NPS.
-* **DICOM curation**: drag the folder-name tags left and right (✕ removes a tag), a *Tracer* tag for PET / NM, and *Stop* stops at once.
+* **DICOM curation**: *Stop* stops at once (also inside a folder being converted); PET SUV uses the scanner's own factor when there is one (image already in SUV, Philips SUV scale factor), else dose, weight and decay; *Start immediately* (read, copy and convert patient by patient) or *Organize first*; progress in % with the time left and what is being done now; a decode table (old and new address of every file, with the patient) and one summary workbook of all patients (studies, dates, follow-up, modalities, tracers), studies and series. RT structure sets are converted to NIfTI too (a label map on the grid of their image, with the ROI names); drag the folder-name tags left and right (✕ removes a tag), a *Tracer* tag for PET / NM, and *Stop* stops at once.
+* Hovering a drop-down, box or button changes only its colour: the panels no longer shake.
+* Moving a window between two monitors with different scaling: the size changes once, when you let go of the window on the new monitor (no more blinking on the way, also with a fast mouse).
 * **Segment / score a database**: PDF or text documents of a case (physician report, disease description) shown to readers under *Additional information*, readable in a large window; on or off per reader.
 
 ## 0.1.8 — 2026-11-22
